@@ -420,8 +420,14 @@ Pour les RDV :
   }
 };
 
+// ── CLÉ PAR DÉFAUT ── (remplace '' par ta clé gsk_...)
+var DEFAULT_KEY = '';
+
 // ── INIT ──
 window.addEventListener('DOMContentLoaded', function() {
+  if (DEFAULT_KEY && !localStorage.getItem('cj_apikey')) {
+    localStorage.setItem('cj_apikey', DEFAULT_KEY);
+  }
   var saved = localStorage.getItem('cj_apikey');
   if (saved) {
     closeModal('setupModal');
