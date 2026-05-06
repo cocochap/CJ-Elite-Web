@@ -482,7 +482,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:4rem 0 2.
   <div id="shero-nr">Jauffrey</div>
   <div id="shero-texts">
     <div class="sht-label">CJ Elite Web</div>
-    <h1 class="sht-title">Chaque message sans réponse<br><em>coûte cher.</em></h1>
+    <h1 class="sht-title">Chaque message sans réponse<br>est un client <em>perdu.</em></h1>
     <div class="sht-hint">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
       Découvrez comment changer ça →
@@ -504,8 +504,8 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:4rem 0 2.
     <ul class="nav-links">
       <li><a href="#prob">Problème</a></li>
       <li><a href="#sol">Solution</a></li>
+      <li><a href="#exemples">Exemples</a></li>
       <li><a href="#pricing">Tarifs</a></li>
-      <li><a href="#team">Équipe</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
     <div class="nav-cta">
@@ -520,27 +520,27 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:4rem 0 2.
   <button class="mob-close" id="mob-close">&times;</button>
   <a href="#prob">Problème</a>
   <a href="#sol">Solution</a>
+  <a href="#exemples">Exemples</a>
   <a href="#pricing">Tarifs</a>
-  <a href="#team">Équipe</a>
   <a href="#faq">FAQ</a>
-  <a href="#contact" class="btn-p">Prendre RDV</a>
+  <a href="javascript:void(0)" onclick="Calendly.initPopupWidget({url:'https://calendly.com/corentinchappelet-pro/20min'});document.getElementById('mob').classList.remove('open');" class="btn-p">Démo gratuite</a>
 </div>
 
 <!-- HERO -->
 <div style="background:var(--bg)">
 <div class="hero-wrap">
   <div style="padding:4rem 0;">
-    <div style="margin-bottom:2rem;"><div class="tag"><span class="tdot"></span>Agents IA · Tous secteurs</div></div>
-    <h1 class="hero-hl">Votre commerce<br>travaille. Même<br>quand vous <em>dormez.</em></h1>
-    <p class="hero-sub">CJ Elite Web crée des agents IA sur mesure pour tous les commerces : restaurants, hôtels, salons de coiffure, boutiques, spas et bien plus. Réponses instantanées, réservations automatiques, revenus en hausse.</p>
+    <div style="margin-bottom:2rem;"><div class="tag"><span class="tdot"></span>Restaurants · Hôtels · Salons de coiffure</div></div>
+    <h1 class="hero-hl">Plus jamais une<br>réservation ou un<br>rendez-vous <em>perdu.</em></h1>
+    <p class="hero-sub">Votre agent IA répond à vos clients en moins de 3 secondes — sur Instagram, WhatsApp et votre site — même à 23h. Vous gérez votre métier. L'IA gère les messages.</p>
     <div class="hero-acts">
-      <a href="#contact" class="btn-p"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Appel découverte — 20 min</a>
-      <a href="#pricing" class="btn-g">Voir les tarifs</a>
+      <a href="javascript:void(0)" onclick="Calendly.initPopupWidget({url:'https://calendly.com/corentinchappelet-pro/20min'});" class="btn-p"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Démo gratuite — 20 min</a>
+      <a href="#exemples" class="btn-g">Voir des exemples</a>
     </div>
-    <div class="hero-hint"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Setup clé en main à partir de <strong>299€</strong> · 1er mois offert</div>
+    <div class="hero-hint"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Setup clé en main · <strong>299€</strong> · 1er mois de support offert</div>
     <div class="hero-stats">
-      <div class="hs"><div class="hs-n"><span class="revNum" data-count="47" data-prefix="+" data-suffix="%">0</span></div><div class="hs-l">Réservations confirmées</div></div>
-      <div class="hs"><div class="hs-n"><span class="revNum" data-count="24" data-suffix="/7">0</span></div><div class="hs-l">Disponibilité agent</div></div>
+      <div class="hs"><div class="hs-n"><span class="revNum" data-count="47" data-prefix="+" data-suffix="%">0</span></div><div class="hs-l">de réservations en plus</div></div>
+      <div class="hs"><div class="hs-n"><span class="revNum" data-count="50" data-prefix="-" data-suffix="%">0</span></div><div class="hs-l">de no-shows</div></div>
       <div class="hs"><div class="hs-n"><span class="revNum" data-count="3" data-prefix="&lt;" data-suffix="s">0</span></div><div class="hs-l">Temps de réponse</div></div>
     </div>
   </div>
@@ -568,11 +568,11 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:4rem 0 2.
 <!-- PROBLEM -->
 <section id="prob">
   <div class="ctr">
-    <div class="rev"><p class="slabel">Le quotidien que vous connaissez</p><h2 class="disp">Chaque jour, vous perdez<br>du CA <em>sans le savoir.</em></h2><p class="sint">Dans la restauration, 68% des messages restent sans réponse après 20h. Chaque message ignoré = une réservation perdue.</p></div>
+    <div class="rev"><p class="slabel">Le quotidien que vous connaissez</p><h2 class="disp">Chaque jour, vous perdez<br>des clients <em>sans le savoir.</em></h2><p class="sint">Dans la restauration et les salons de coiffure, 68% des messages restent sans réponse après 20h. Chaque message ignoré = un client perdu — qui réserve chez le concurrent.</p></div>
     <div class="prob-grid rev d2">
       <div class="prob-item"><div class="prob-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div class="prob-title">Vous n'avez pas le temps</div><div class="prob-desc">Entre le service et la gestion, répondre aux messages est impossible. Les demandes s'accumulent, les clients s'impatientent.</div><span class="prob-tag">Jusqu'à 40 messages/jour non traités</span></div>
       <div class="prob-item"><div class="prob-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg></div><div class="prob-title">Les messages, c'est le chaos</div><div class="prob-desc">Instagram, WhatsApp, Google — les canaux se multiplient. Aucun système centralisé. Des demandes tombent dans les failles.</div><span class="prob-tag">4 canaux à surveiller simultanément</span></div>
-      <div class="prob-item"><div class="prob-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div><div class="prob-title">Les réservations mal gérées</div><div class="prob-desc">Double-bookings, no-shows, annulations tardives. Sans automatisation, chaque erreur coûte une table.</div><span class="prob-tag">15% de no-shows en moyenne</span></div>
+      <div class="prob-item"><div class="prob-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div><div class="prob-title">Les RDV et réservations qui s'échappent</div><div class="prob-desc">No-shows, annulations tardives, créneaux oubliés. Sans rappel automatique, chaque erreur coûte une table ou un siège en cabine.</div><span class="prob-tag">15% de no-shows en moyenne</span></div>
       <div class="prob-item"><div class="prob-icon"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div class="prob-title">Du CA qui s'évapore</div><div class="prob-desc">Un client qui attend 2h réserve ailleurs. La lenteur de traitement vous coûte des milliers d'euros chaque mois.</div><span class="prob-tag">-2 300€/mois en revenus manqués</span></div>
     </div>
   </div>
@@ -587,7 +587,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:4rem 0 2.
         <div class="feat-list">
           <div class="feat-item"><div class="feat-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div><div class="feat-title">Réponse en moins de 3 secondes</div><div class="feat-desc">24h/24, 7j/7, même pendant le service ou la nuit.</div></div></div>
           <div class="feat-item"><div class="feat-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div><div><div class="feat-title">Réservations automatiques</div><div class="feat-desc">Confirmation, rappel J-1, gestion des no-shows.</div></div></div>
-          <div class="feat-item"><div class="feat-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div><div><div class="feat-title">Analytics & reporting</div><div class="feat-desc">Performances en temps réel : messages, conversions, revenus.</div></div></div>
+          <div class="feat-item"><div class="feat-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div><div><div class="feat-title">Vous voyez ce que ça rapporte</div><div class="feat-desc">Combien de messages reçus, de réservations prises, de clients convertis — en un coup d'œil.</div></div></div>
         </div>
       </div>
       <div class="revR">
@@ -595,7 +595,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:4rem 0 2.
           <div class="term-hdr"><div class="tdot3" style="background:#ef4444"></div><div class="tdot3" style="background:#f59e0b"></div><div class="tdot3" style="background:#22c55e"></div><span class="term-title">agent_cj_elite.log</span></div>
           <div class="term-body">
             <div><span class="tp">› </span><span>Agent CJ Elite — initialisation</span></div>
-            <span class="to">Modèle: GPT-4o fine-tuned</span><span class="to">Restaurant: synchronisé</span><br>
+            <span class="to">IA avancée · Entraînée sur votre établissement</span><span class="to">Établissement: synchronisé</span><br>
             <div><span class="tp">› </span><span>Message entrant...</span></div>
             <span class="to">"Avez-vous des options véganes ?"</span><span class="to tok">Réponse en 1.2s</span>
             <span class="to" style="color:var(--g2);font-style:italic;">"Absolument ! 4 plats 100% véganes disponibles..."</span><br>
@@ -732,6 +732,52 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:4rem 0 2.
   </div>
 </section>
 
+<!-- CAS CONCRETS -->
+<section id="exemples" style="background:var(--bg2);padding:7rem 0;">
+  <div class="ctr">
+    <div class="rev" style="text-align:center;margin-bottom:3.5rem;">
+      <p class="slabel" style="justify-content:center;">En pratique</p>
+      <h2 class="disp">Ce que ça change<br>au <em>quotidien.</em></h2>
+      <p class="sint" style="text-align:center;margin:0 auto;max-width:520px;">Voici à quoi ressemblent les premiers résultats typiques avec un agent CJ Elite dans des établissements similaires au vôtre.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;">
+
+      <div class="rev d1" style="background:var(--surf);border:1px solid var(--border);border-radius:20px;padding:2.5rem;position:relative;overflow:hidden;">
+        <div class="pc-top"></div>
+        <div style="font-size:11px;font-family:var(--m);color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.25rem;">Restaurant · 40 couverts</div>
+        <div style="font-size:3rem;font-weight:800;color:var(--w);letter-spacing:-.04em;line-height:1;margin-bottom:4px;">+34</div>
+        <div style="font-size:14px;color:var(--g3);margin-bottom:1.5rem;">réservations par semaine</div>
+        <div style="font-size:14px;color:var(--g2);line-height:1.7;border-top:1px solid var(--border);padding-top:1.25rem;">Avant : 12 demandes par soir après 21h, 80% sans réponse jusqu'au lendemain. Les clients réservaient ailleurs.<br><br>Après : l'agent répond en 3 secondes, confirme, envoie le rappel J-1. Les tables se remplissent.</div>
+        <div style="margin-top:1.5rem;display:flex;align-items:center;gap:8px;"><div style="width:7px;height:7px;border-radius:50%;background:#4ade80;"></div><span style="font-family:var(--m);font-size:12px;color:var(--g2);">Taux de réponse : <strong style="color:var(--w);">100% · 24h/24</strong></span></div>
+      </div>
+
+      <div class="rev d2" style="background:var(--surf);border:1px solid var(--border);border-radius:20px;padding:2.5rem;position:relative;overflow:hidden;">
+        <div class="pc-top"></div>
+        <div style="font-size:11px;font-family:var(--m);color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.25rem;">Salon de coiffure · 3 coiffeurs</div>
+        <div style="font-size:3rem;font-weight:800;color:var(--w);letter-spacing:-.04em;line-height:1;margin-bottom:4px;">−11h</div>
+        <div style="font-size:14px;color:var(--g3);margin-bottom:1.5rem;">au téléphone par semaine</div>
+        <div style="font-size:14px;color:var(--g2);line-height:1.7;border-top:1px solid var(--border);padding-top:1.25rem;">Avant : 40 à 60 appels et messages par semaine pour gérer les RDV. Impossible de répondre en cabine.<br><br>Après : l'agent propose les créneaux, confirme automatiquement, rappelle J-1. L'agenda se remplit sans décrocher.</div>
+        <div style="margin-top:1.5rem;display:flex;align-items:center;gap:8px;"><div style="width:7px;height:7px;border-radius:50%;background:#4ade80;"></div><span style="font-family:var(--m);font-size:12px;color:var(--g2);">Zéro appel manqué · Agenda géré 24h/24</span></div>
+      </div>
+
+      <div class="rev d3" style="background:linear-gradient(135deg,rgba(212,175,55,.08),rgba(212,175,55,.03));border:1px solid var(--borderg);border-radius:20px;padding:2.5rem;position:relative;overflow:hidden;">
+        <div class="pc-top"></div>
+        <div style="font-size:11px;font-family:var(--m);color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.25rem;">Tous secteurs · Rappels automatiques</div>
+        <div style="font-size:3rem;font-weight:800;color:var(--w);letter-spacing:-.04em;line-height:1;margin-bottom:4px;">−50%</div>
+        <div style="font-size:14px;color:var(--g3);margin-bottom:1.5rem;">de no-shows et RDV non honorés</div>
+        <div style="font-size:14px;color:var(--g2);line-height:1.7;border-top:1px solid var(--border);padding-top:1.25rem;">L'agent envoie un rappel automatique 24h avant chaque réservation ou rendez-vous. En cas de non-confirmation, il relance et libère le créneau instantanément.<br><br>Fini les tables vides et les trous d'agenda.</div>
+        <div style="margin-top:1.5rem;display:flex;align-items:center;gap:8px;"><div style="width:7px;height:7px;border-radius:50%;background:#4ade80;"></div><span style="font-family:var(--m);font-size:12px;color:var(--g2);">Source : OpenTable Report · McKinsey 2024</span></div>
+      </div>
+
+    </div>
+    <p class="rev" style="text-align:center;font-size:12px;color:var(--g3);font-family:var(--m);margin-top:2rem;letter-spacing:.04em;">Résultats typiques observés sur des établissements similaires. Chiffres à titre indicatif — les vôtres seront calculés lors de l'appel.</p>
+    <div class="rev" style="text-align:center;margin-top:2.5rem;">
+      <a href="javascript:void(0)" onclick="Calendly.initPopupWidget({url:'https://calendly.com/corentinchappelet-pro/20min'});" class="btn-p"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Calculer mon ROI — appel gratuit</a>
+    </div>
+  </div>
+</section>
+<style>@media(max-width:640px){#exemples .rev[style*="grid-template-columns:repeat(3"]{display:flex!important;flex-direction:column}}</style>
+
 <!-- PARALLAX CTA -->
 <div class="par-sect">
   <div class="par-bg"></div><div class="par-ov"></div>
@@ -808,7 +854,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:4rem 0 2.
 <section id="contact">
   <div class="ctr">
     <div class="form-grid">
-      <div class="rev"><p class="slabel">Contact</p><h2 class="disp" style="font-size:clamp(2rem,3.5vw,3rem);">Parlons de<br>votre <em>établissement.</em></h2><p class="sint" style="margin-bottom:2rem;">Remplissez le formulaire — on vous répond sous 24h avec une analyse personnalisée.</p>
+      <div class="rev"><p class="slabel">Contact</p><h2 class="disp" style="font-size:clamp(2rem,3.5vw,3rem);">On vous montre<br>ce que ça donne <em>chez vous.</em></h2><p class="sint" style="margin-bottom:2rem;">Appel de 20 min offert. On analyse votre situation, on vous montre l'agent en live, et on chiffre vos gains potentiels. Aucun engagement.</p>
         <div style="display:flex;flex-direction:column;gap:16px;">
           <div style="display:flex;align-items:center;gap:14px;padding:16px;background:var(--surf);border:1px solid var(--border);border-radius:12px;"><div style="width:40px;height:40px;border-radius:10px;background:var(--golddim);border:1px solid var(--borderg);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" fill="none" stroke="var(--gold)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></div><div><div style="font-size:13px;font-weight:600;color:var(--w);">Appel direct</div><a href="tel:0630750485" style="font-size:14px;color:var(--gold);text-decoration:none;">06 30 75 04 85</a></div></div>
           <div style="display:flex;align-items:center;gap:14px;padding:16px;background:var(--surf);border:1px solid var(--border);border-radius:12px;"><div style="width:40px;height:40px;border-radius:10px;background:var(--golddim);border:1px solid var(--borderg);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" fill="none" stroke="var(--gold)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div><div><div style="font-size:13px;font-weight:600;color:var(--w);">Email — Corentin</div><a href="mailto:corentinchappelet.pro@gmail.com" style="font-size:14px;color:var(--gold);text-decoration:none;">corentinchappelet.pro@gmail.com</a></div></div>
@@ -858,6 +904,9 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:4rem 0 2.
         <div class="faq-item"><div class="faq-q" onclick="faqT(this)">Sur quels canaux ça fonctionne ?<svg class="faq-chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg></div><div class="faq-a">Instagram DM, WhatsApp Business, et votre site web. On démarre par les 2 canaux les plus actifs pour vous.</div></div>
         <div class="faq-item"><div class="faq-q" onclick="faqT(this)">Y a-t-il un engagement de durée ?<svg class="faq-chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg></div><div class="faq-a">Non. L'abonnement à 49€/mois est sans engagement avec préavis de 30 jours.</div></div>
         <div class="faq-item"><div class="faq-q" onclick="faqT(this)">Quel est le ROI typique ?<svg class="faq-chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg></div><div class="faq-a">Avec -50% de no-shows et 5h récupérées par semaine, l'agent se rentabilise rapidement. On calcule ça ensemble lors de l'appel.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faqT(this)">C'est adapté à mon salon de coiffure ?<svg class="faq-chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg></div><div class="faq-a">Oui. L'agent gère les prises de RDV, les rappels clients et les réponses aux questions courantes (horaires, prestations, tarifs). Il libère vos coiffeurs du téléphone sans changer votre façon de travailler.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faqT(this)">Est-ce difficile à gérer au quotidien ?<svg class="faq-chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg></div><div class="faq-a">Non. Une fois déployé, l'agent tourne seul. Vous recevez un récapitulatif régulier. Si vous voulez modifier quelque chose (horaires, offres, message), on s'en occupe. Pas d'interface complexe à maîtriser.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faqT(this)">Et si ça ne me convient pas ?<svg class="faq-chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg></div><div class="faq-a">L'abonnement mensuel est sans engagement. Vous pouvez arrêter à tout moment avec 30 jours de préavis. Le setup (299€) reste acquis — il s'agit d'un travail de configuration, pas d'un abonnement dissimulé.</div></div>
       </div>
     </div>
   </div>
