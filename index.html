@@ -1162,20 +1162,22 @@ function submitForm() {
     })
   })
   .then(function(res) {
-    if (res.ok) {
-      document.getElementById('form-content').style.display = 'none';
-      document.getElementById('form-success').style.display = 'block';
-    } else {
-      res.json().then(function(data) {
-        var errMsg = (data && data.errors) ? data.errors.map(function(e){ return e.message; }).join(', ') : 'Erreur inconnue.';
-        alert('Une erreur est survenue : ' + errMsg);
+    return res.json().then(function(data) {
+      console.log('Web3Forms response:', res.status, data);
+      if (res.ok && data.success) {
+        document.getElementById('form-content').style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      } else {
+        var errMsg = data.message || data.error || ('Statut ' + res.status);
+        alert('Erreur Web3Forms : ' + errMsg);
         btn.textContent = 'Envoyer ma demande';
         btn.disabled = false;
-      });
-    }
+      }
+    });
   })
-  .catch(function() {
-    alert('Impossible d\'envoyer le formulaire. Vérifiez votre connexion et réessayez.');
+  .catch(function(err) {
+    console.error('Fetch error:', err);
+    alert('Erreur réseau : ' + err.message);
     btn.textContent = 'Envoyer ma demande';
     btn.disabled = false;
   });
