@@ -166,6 +166,125 @@ body{background:var(--bg);color:var(--g1);font-family:var(--f);font-size:15px;li
   .mode-tab{padding:5px 10px;font-size:12px}
   .modal{padding:1.5rem}
 }
+
+/* ── TOGGLE VIEW BUTTON ── */
+.view-toggle-btn{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;font-family:var(--f);padding:7px 14px;border-radius:8px;border:1px solid var(--borderg);background:var(--golddim);color:var(--gold);cursor:pointer;transition:all .2s;white-space:nowrap}
+.view-toggle-btn:hover{background:rgba(212,175,55,.18)}
+
+/* ── BUBBLE VIEW LAYER ── */
+#bubbleView{position:fixed;inset:0;z-index:100;display:none;flex-direction:column}
+#bubbleView.active{display:flex}
+
+/* ── FAKE SITE ── */
+.fake-site{flex:1;overflow-y:auto;position:relative;font-family:'Geist',sans-serif}
+
+/* Restaurant theme */
+.fake-site.resto{background:#0d0905;color:#e8dcc8}
+.fs-resto-nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:68px;background:rgba(13,9,5,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(200,165,90,.15)}
+.fs-logo{font-size:18px;font-weight:800;letter-spacing:.06em;color:#e8dcc8}
+.fs-logo em{color:#c8a55a;font-style:normal}
+.fs-nav-links{display:flex;gap:2rem;list-style:none}
+.fs-nav-links a{font-size:13px;color:rgba(232,220,200,.6);text-decoration:none;transition:color .2s;letter-spacing:.04em}
+.fs-nav-links a:hover{color:#c8a55a}
+.fs-nav-cta{display:inline-flex;align-items:center;font-size:13px;font-weight:600;padding:9px 20px;border-radius:6px;background:#c8a55a;color:#0d0905;text-decoration:none;letter-spacing:.04em;transition:opacity .2s}
+.fs-nav-cta:hover{opacity:.88}
+.fs-resto-hero{min-height:92vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;background:radial-gradient(ellipse 80% 60% at 50% 70%,rgba(180,120,40,.18) 0%,transparent 70%),linear-gradient(180deg,#0d0905 0%,#120c06 50%,#0a0704 100%);position:relative;overflow:hidden}
+.fs-hero-deco{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(200,165,90,.03) 60px),repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(200,165,90,.03) 60px);pointer-events:none}
+.fs-hero-inner{position:relative;z-index:1;max-width:680px}
+.fs-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#c8a55a;margin-bottom:1.5rem;font-family:var(--m)}
+.fs-hero-title{font-size:clamp(2.8rem,5vw,5rem);font-weight:800;line-height:1.05;letter-spacing:-.04em;color:#f2e8d4;margin-bottom:1.25rem}
+.fs-hero-title em{color:#c8a55a;font-style:normal}
+.fs-hero-sub{font-size:18px;color:rgba(232,220,200,.6);line-height:1.65;margin-bottom:2.5rem;font-weight:300}
+.fs-btn-gold{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:700;padding:15px 32px;border-radius:7px;background:#c8a55a;color:#0d0905;text-decoration:none;letter-spacing:.02em;transition:transform .18s,box-shadow .18s}
+.fs-btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(200,165,90,.4)}
+.fs-btn-outline{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:500;padding:14px 28px;border-radius:7px;border:1px solid rgba(200,165,90,.3);color:rgba(232,220,200,.7);text-decoration:none;transition:all .18s;margin-left:12px}
+.fs-btn-outline:hover{border-color:#c8a55a;color:#c8a55a}
+.fs-resto-about{padding:6rem 3rem;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.fs-about-txt h2{font-size:2.2rem;font-weight:800;letter-spacing:-.03em;color:#f2e8d4;margin-bottom:1rem}
+.fs-about-txt p{font-size:15px;color:rgba(232,220,200,.6);line-height:1.75}
+.fs-stats{display:flex;flex-direction:column;gap:1.5rem}
+.fs-stat{padding:1.5rem;border:1px solid rgba(200,165,90,.15);border-radius:14px;background:rgba(200,165,90,.04)}
+.fs-stat-n{font-size:2.4rem;font-weight:800;color:#c8a55a;letter-spacing:-.04em;line-height:1}
+.fs-stat-l{font-size:13px;color:rgba(232,220,200,.5);margin-top:4px}
+
+/* Salon theme */
+.fake-site.salon{background:#faf8f5;color:#2c2218}
+.fs-salon-nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:68px;background:rgba(250,248,245,.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(180,140,100,.15)}
+.fs-salon-logo{font-size:18px;font-weight:800;letter-spacing:.04em;color:#2c2218}
+.fs-salon-logo em{color:#9e7a3e;font-style:normal}
+.fs-salon-links{display:flex;gap:2rem;list-style:none}
+.fs-salon-links a{font-size:13px;color:rgba(44,34,24,.5);text-decoration:none;transition:color .2s}
+.fs-salon-links a:hover{color:#9e7a3e}
+.fs-salon-cta{display:inline-flex;align-items:center;font-size:13px;font-weight:600;padding:9px 20px;border-radius:6px;background:#2c2218;color:#faf8f5;text-decoration:none;transition:opacity .2s}
+.fs-salon-cta:hover{opacity:.82}
+.fs-salon-hero{min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;background:linear-gradient(160deg,#fdf7f0 0%,#f5ece0 40%,#efe0cc 100%);position:relative;overflow:hidden}
+.fs-salon-deco{position:absolute;bottom:-60px;right:-60px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(180,140,100,.12) 0%,transparent 70%);pointer-events:none}
+.fs-salon-deco2{position:absolute;top:-40px;left:-40px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(220,180,140,.1) 0%,transparent 70%);pointer-events:none}
+.fs-salon-inner{position:relative;z-index:1;max-width:600px}
+.fs-salon-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#9e7a3e;margin-bottom:1.5rem;font-family:var(--m)}
+.fs-salon-title{font-size:clamp(2.6rem,4.5vw,4.5rem);font-weight:800;line-height:1.05;letter-spacing:-.04em;color:#1a1209;margin-bottom:1.25rem}
+.fs-salon-title em{color:#9e7a3e;font-style:normal}
+.fs-salon-sub{font-size:17px;color:rgba(44,34,24,.55);line-height:1.65;margin-bottom:2.5rem;font-weight:300}
+.fs-btn-dark{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:700;padding:15px 32px;border-radius:7px;background:#1a1209;color:#faf8f5;text-decoration:none;transition:transform .18s,box-shadow .18s}
+.fs-btn-dark:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,.25)}
+.fs-salon-about{padding:5rem 3rem;max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem}
+.fs-prestation{padding:2rem;border-radius:16px;background:#fff;border:1px solid rgba(180,140,100,.12);text-align:center}
+.fs-prestation-icon{font-size:2rem;margin-bottom:.75rem}
+.fs-prestation h3{font-size:15px;font-weight:700;color:#1a1209;margin-bottom:.5rem}
+.fs-prestation p{font-size:13px;color:rgba(44,34,24,.5);line-height:1.5}
+.fs-prestation-price{display:inline-block;margin-top:.75rem;font-size:13px;font-weight:700;color:#9e7a3e}
+
+/* ── CHAT BUBBLE ── */
+.chat-bubble-btn{position:fixed;bottom:24px;right:24px;z-index:9999;width:58px;height:58px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(212,175,55,.55),0 2px 8px rgba(0,0,0,.3);transition:transform .2s cubic-bezier(.16,1,.3,1),box-shadow .2s;flex-shrink:0}
+.chat-bubble-btn:hover{transform:scale(1.1);box-shadow:0 12px 40px rgba(212,175,55,.7)}
+.chat-bubble-btn.widget-open{transform:scale(1)}
+.bubble-close-icon{display:none}.bubble-chat-icon{display:flex}
+.chat-bubble-btn.widget-open .bubble-close-icon{display:flex}
+.chat-bubble-btn.widget-open .bubble-chat-icon{display:none}
+.bubble-badge{position:absolute;top:-2px;right:-2px;width:18px;height:18px;border-radius:50%;background:#ef4444;font-size:10px;font-weight:800;color:#fff;display:none;align-items:center;justify-content:center;border:2px solid #fff;animation:badgePop .3s cubic-bezier(.16,1,.3,1)}
+@keyframes badgePop{from{transform:scale(0)}to{transform:scale(1)}}
+.bubble-badge.show{display:flex}
+.bubble-ring{position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(212,175,55,.35);animation:bubbleRing 2.5s ease-in-out infinite}
+@keyframes bubbleRing{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.12);opacity:0}}
+
+/* ── CHAT WIDGET ── */
+.chat-widget{position:fixed;bottom:96px;right:24px;z-index:9998;width:340px;height:490px;background:var(--bg);border:1px solid var(--borderg);border-radius:20px;box-shadow:0 24px 80px rgba(0,0,0,.65),0 0 0 1px rgba(212,175,55,.1);display:none;flex-direction:column;overflow:hidden;transform-origin:bottom right}
+.chat-widget.open{display:flex;animation:widgetIn .28s cubic-bezier(.16,1,.3,1)}
+@keyframes widgetIn{from{opacity:0;transform:scale(.88) translateY(12px)}to{opacity:1;transform:none}}
+.widget-hdr{flex-shrink:0;display:flex;align-items:center;gap:10px;padding:.8rem 1rem;background:var(--bg);border-bottom:1px solid var(--border)}
+.widget-av{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--gold),#8B6914);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#000;flex-shrink:0}
+.widget-info{flex:1;min-width:0}
+.widget-name{font-size:13px;font-weight:600;color:var(--w);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.widget-status{display:flex;align-items:center;gap:4px;font-size:11px;color:#4ade80;font-family:var(--m)}
+.widget-status-dot{width:5px;height:5px;border-radius:50%;background:#4ade80;animation:pulse 2s ease-in-out infinite}
+.widget-close{width:28px;height:28px;border-radius:7px;border:1px solid var(--border);background:transparent;color:var(--g3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .2s;flex-shrink:0}
+.widget-close:hover{color:var(--w);border-color:var(--borderg)}
+.widget-msgs{flex:1;overflow-y:auto;padding:.9rem;display:flex;flex-direction:column;gap:10px}
+.widget-quick{flex-shrink:0;padding:.4rem .9rem .5rem;display:flex;gap:6px;flex-wrap:wrap;border-top:1px solid var(--border)}
+.widget-quick-btn{font-size:11px;color:var(--g2);border:1px solid var(--border);border-radius:100px;padding:4px 10px;cursor:pointer;background:transparent;font-family:var(--f);transition:all .2s;white-space:nowrap}
+.widget-quick-btn:hover{border-color:var(--borderg);color:var(--gold)}
+.widget-input-bar{flex-shrink:0;display:flex;gap:8px;padding:.7rem .9rem;background:var(--bg);border-top:1px solid var(--border);align-items:center}
+.widget-input{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:13px;color:var(--w);font-family:var(--f);outline:none;resize:none;transition:border-color .2s}
+.widget-input:focus{border-color:var(--borderg)}
+.widget-input::placeholder{color:var(--g3)}
+.widget-send{width:36px;height:36px;border-radius:8px;background:var(--gold);border:none;color:#000;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:opacity .2s}
+.widget-send:hover{opacity:.85}
+.widget-send:disabled{opacity:.35;cursor:not-allowed}
+.widget-typing{flex-shrink:0;display:none;align-items:center;gap:8px;padding:0 .9rem .5rem}
+.widget-typing.show{display:flex}
+.widget-typing-dots{display:flex;gap:3px;background:var(--surf);border:1px solid var(--border);border-radius:10px;border-bottom-left-radius:3px;padding:8px 11px}
+.widget-typing-dots span{width:5px;height:5px;border-radius:50%;background:var(--g3);animation:td 1.2s ease-in-out infinite}
+.widget-typing-dots span:nth-child(2){animation-delay:.2s}
+.widget-typing-dots span:nth-child(3){animation-delay:.4s}
+.widget-branding{text-align:center;padding:5px 0 2px;font-size:10px;color:var(--g3);font-family:var(--m);flex-shrink:0;border-top:1px solid var(--border)}
+.widget-branding a{color:var(--gold);text-decoration:none}
+
+@media(max-width:480px){
+  .chat-widget{width:calc(100vw - 32px);right:16px;bottom:88px}
+  .fs-resto-about,.fs-salon-about{grid-template-columns:1fr}
+  .fs-resto-nav,.fs-salon-nav{padding:0 1.25rem}
+  .fs-nav-links,.fs-salon-links{display:none}
+}
 </style>
 </head>
 <body>
@@ -175,6 +294,10 @@ body{background:var(--bg);color:var(--g1);font-family:var(--f);font-size:15px;li
   <a href="/" class="topbar-logo">CJ <span>Elite</span> Web</a>
   <div class="topbar-right">
     <span class="topbar-tag">Agent IA · Démo</span>
+    <button class="view-toggle-btn" id="viewToggleBtn" onclick="toggleViewMode()">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4"/></svg>
+      Vue bulle
+    </button>
     <a href="/" class="back-link">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
       Retour au site
@@ -275,6 +398,50 @@ body{background:var(--bg);color:var(--g1);font-family:var(--f);font-size:15px;li
   </div>
 
 </div><!-- end main -->
+
+<!-- ── BUBBLE VIEW ── -->
+<div id="bubbleView">
+
+  <!-- FAKE SITE (contenu généré par JS) -->
+  <div class="fake-site" id="fakeSite"></div>
+
+  <!-- BULLE FLOTTANTE -->
+  <button class="chat-bubble-btn" id="chatBubbleBtn" onclick="toggleWidget()">
+    <div class="bubble-ring"></div>
+    <span class="bubble-badge" id="bubbleBadge">1</span>
+    <span class="bubble-chat-icon">
+      <svg width="24" height="24" fill="none" stroke="#000" stroke-width="2.2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+    </span>
+    <span class="bubble-close-icon">
+      <svg width="20" height="20" fill="none" stroke="#000" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </span>
+  </button>
+
+  <!-- WIDGET CHAT -->
+  <div class="chat-widget" id="chatWidget">
+    <div class="widget-hdr">
+      <div class="widget-av" id="widgetAv">CJ</div>
+      <div class="widget-info">
+        <div class="widget-name" id="widgetName">Assistant</div>
+        <div class="widget-status"><span class="widget-status-dot"></span>En ligne — répond en &lt;3s</div>
+      </div>
+      <button class="widget-close" onclick="toggleWidget()">×</button>
+    </div>
+    <div class="widget-msgs" id="widgetMsgs"></div>
+    <div class="widget-typing" id="widgetTyping">
+      <div class="widget-typing-dots"><span></span><span></span><span></span></div>
+    </div>
+    <div class="widget-quick" id="widgetQuick"></div>
+    <div class="widget-input-bar">
+      <input class="widget-input" id="widgetInput" type="text" placeholder="Écrivez un message..." maxlength="400"/>
+      <button class="widget-send" id="widgetSendBtn" onclick="sendWidgetMessage()">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      </button>
+    </div>
+    <div class="widget-branding">Propulsé par <a href="/" target="_blank">CJ Elite Web</a></div>
+  </div>
+
+</div>
 
 <!-- ── MODAL SETTINGS ── -->
 <div class="modal-overlay" id="settingsModal">
@@ -744,6 +911,247 @@ function showStatus(id, msg, type) {
   el.textContent = msg;
   el.className = 'status-msg' + (type ? ' ' + type : '');
   el.style.display = 'block';
+}
+
+// ── VIEW MODE (plein écran ↔ bulle) ──
+var VIEW_MODE = 'fullscreen';
+var WIDGET_OPEN = false;
+var WIDGET_HISTORY = [];
+var WIDGET_BUSY = false;
+var WIDGET_UNREAD = 0;
+
+function toggleViewMode() {
+  VIEW_MODE = VIEW_MODE === 'fullscreen' ? 'bubble' : 'fullscreen';
+  var btn = document.getElementById('viewToggleBtn');
+  var bubbleView = document.getElementById('bubbleView');
+  var main = document.querySelector('.main');
+  var configbar = document.querySelector('.configbar');
+
+  if (VIEW_MODE === 'bubble') {
+    bubbleView.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    btn.innerHTML = '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg> Plein écran';
+    buildFakeSite();
+    initWidgetChat();
+    // Ouvre le widget automatiquement après 1s pour la démo
+    setTimeout(function(){ if (!WIDGET_OPEN) toggleWidget(); }, 1100);
+  } else {
+    bubbleView.classList.remove('active');
+    document.body.style.overflow = '';
+    btn.innerHTML = '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83"/></svg> Vue bulle';
+    WIDGET_OPEN = false;
+    document.getElementById('chatWidget').classList.remove('open');
+    document.getElementById('chatBubbleBtn').classList.remove('widget-open');
+  }
+}
+
+// ── FAKE SITE BUILDER ──
+function buildFakeSite() {
+  var name = getBizName();
+  var site = document.getElementById('fakeSite');
+  if (MODE === 'restaurant') {
+    site.className = 'fake-site resto';
+    site.innerHTML = buildRestoSite(name);
+  } else {
+    site.className = 'fake-site salon';
+    site.innerHTML = buildSalonSite(name);
+  }
+}
+
+function buildRestoSite(name) {
+  return '<nav class="fs-resto-nav">' +
+    '<div class="fs-logo"><em>' + name + '</em></div>' +
+    '<ul class="fs-nav-links"><li><a href="#">Menu</a></li><li><a href="#">À propos</a></li><li><a href="#">Galerie</a></li><li><a href="#">Contact</a></li></ul>' +
+    '<a href="#" class="fs-nav-cta">Réserver une table</a>' +
+    '</nav>' +
+    '<div class="fs-resto-hero">' +
+      '<div class="fs-hero-deco"></div>' +
+      '<div class="fs-hero-inner">' +
+        '<div class="fs-eyebrow">Cuisine française · Paris · Depuis 2018</div>' +
+        '<h1 class="fs-hero-title">Une expérience<br>gastronomique <em>unique.</em></h1>' +
+        '<p class="fs-hero-sub">Saveurs authentiques, cadre élégant, service attentionné. Chaque repas raconte une histoire.</p>' +
+        '<a href="#" class="fs-btn-gold"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Réserver une table</a>' +
+        '<a href="#" class="fs-btn-outline">Voir le menu →</a>' +
+      '</div>' +
+    '</div>' +
+    '<div class="fs-resto-about">' +
+      '<div class="fs-about-txt"><h2>Notre philosophie</h2><p>Au cœur de Paris, ' + name + ' vous accueille dans une atmosphère chaleureuse et raffinée. Notre chef imagine chaque jour une cuisine de saison, ancrée dans les traditions françaises et ouverte sur le monde.<br><br>40 couverts, une équipe passionnée, et une carte qui évolue au fil des saisons et des marchés.</p></div>' +
+      '<div class="fs-stats">' +
+        '<div class="fs-stat"><div class="fs-stat-n">40</div><div class="fs-stat-l">couverts, cadre intime</div></div>' +
+        '<div class="fs-stat"><div class="fs-stat-n">7j/7</div><div class="fs-stat-l">midi et soir</div></div>' +
+        '<div class="fs-stat"><div class="fs-stat-n">★ 4.8</div><div class="fs-stat-l">Note Google · 312 avis</div></div>' +
+      '</div>' +
+    '</div>';
+}
+
+function buildSalonSite(name) {
+  return '<nav class="fs-salon-nav">' +
+    '<div class="fs-salon-logo"><em>' + name + '</em></div>' +
+    '<ul class="fs-salon-links"><li><a href="#">Prestations</a></li><li><a href="#">L\'équipe</a></li><li><a href="#">Galerie</a></li><li><a href="#">Contact</a></li></ul>' +
+    '<a href="#" class="fs-salon-cta">Prendre un RDV</a>' +
+    '</nav>' +
+    '<div class="fs-salon-hero">' +
+      '<div class="fs-salon-deco"></div>' +
+      '<div class="fs-salon-deco2"></div>' +
+      '<div class="fs-salon-inner">' +
+        '<div class="fs-salon-eyebrow">Coiffure & Soin · Depuis 2019</div>' +
+        '<h1 class="fs-salon-title">Révélez votre<br>beauté <em>naturelle.</em></h1>' +
+        '<p class="fs-salon-sub">Coupes, couleurs, soins — une équipe d\'experts à votre service pour sublimer votre style.</p>' +
+        '<a href="#" class="fs-btn-dark"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Réserver un rendez-vous</a>' +
+      '</div>' +
+    '</div>' +
+    '<div class="fs-salon-about">' +
+      '<div class="fs-prestation"><div class="fs-prestation-icon">✂️</div><h3>Coupe & Brushing</h3><p>Femme, homme, enfant — une coupe adaptée à votre visage et votre style.</p><span class="fs-prestation-price">À partir de 25€</span></div>' +
+      '<div class="fs-prestation"><div class="fs-prestation-icon">🎨</div><h3>Colorations</h3><p>Mèches, balayage, couleur totale — des techniques maîtrisées pour un résultat lumineux.</p><span class="fs-prestation-price">À partir de 85€</span></div>' +
+      '<div class="fs-prestation"><div class="fs-prestation-icon">✨</div><h3>Soins & Traitements</h3><p>Kératine, soins nutritifs, masques professionnels pour des cheveux en pleine santé.</p><span class="fs-prestation-price">À partir de 35€</span></div>' +
+    '</div>';
+}
+
+// ── WIDGET CHAT ──
+function toggleWidget() {
+  WIDGET_OPEN = !WIDGET_OPEN;
+  var widget = document.getElementById('chatWidget');
+  var bubble = document.getElementById('chatBubbleBtn');
+  if (WIDGET_OPEN) {
+    widget.classList.add('open');
+    bubble.classList.add('widget-open');
+    WIDGET_UNREAD = 0;
+    document.getElementById('bubbleBadge').classList.remove('show');
+    setTimeout(function(){ document.getElementById('widgetInput').focus(); }, 300);
+  } else {
+    widget.classList.remove('open');
+    bubble.classList.remove('widget-open');
+  }
+}
+
+function initWidgetChat() {
+  var name = getBizName();
+  WIDGET_HISTORY = [{ role: 'system', content: SYSTEM_PROMPTS[MODE](name) }];
+  WIDGET_BUSY = false;
+  document.getElementById('widgetMsgs').innerHTML = '';
+  document.getElementById('widgetInput').value = '';
+  // Update header
+  var initials = name.split(/\s+/).map(function(w){return w[0]||'';}).join('').slice(0,2).toUpperCase() || 'IA';
+  document.getElementById('widgetAv').textContent = initials;
+  document.getElementById('widgetName').textContent = 'Assistant ' + name;
+  // Greeting
+  var greeting = MODE === 'restaurant'
+    ? 'Bonjour ! Je suis l\'assistant de ' + name + '. Comment puis-je vous aider ? 😊'
+    : 'Bonjour ! Je suis l\'assistant du salon ' + name + '. Comment puis-je vous aider ? 😊';
+  addWidgetMessage('bot', greeting);
+  renderWidgetQuickReplies();
+}
+
+function addWidgetMessage(role, text) {
+  var container = document.getElementById('widgetMsgs');
+  var wrap = document.createElement('div');
+  wrap.className = 'msg ' + role;
+  wrap.style.maxWidth = '88%';
+
+  if (role === 'bot') {
+    var av = document.createElement('div');
+    av.className = 'msg-av';
+    av.style.cssText = 'width:24px;height:24px;border-radius:7px;font-size:9px';
+    av.textContent = document.getElementById('widgetAv').textContent;
+    wrap.appendChild(av);
+  }
+
+  var bubble = document.createElement('div');
+  bubble.className = 'msg-bubble';
+  bubble.style.fontSize = '13px';
+  bubble.style.whiteSpace = 'pre-wrap';
+  bubble.textContent = text;
+  wrap.appendChild(bubble);
+  container.appendChild(wrap);
+  container.scrollTop = container.scrollHeight;
+
+  if (role === 'bot' && !WIDGET_OPEN) {
+    WIDGET_UNREAD++;
+    var badge = document.getElementById('bubbleBadge');
+    badge.textContent = WIDGET_UNREAD;
+    badge.classList.add('show');
+  }
+  return bubble;
+}
+
+function renderWidgetQuickReplies() {
+  var wrap = document.getElementById('widgetQuick');
+  wrap.innerHTML = '';
+  var replies = QUICK_REPLIES[MODE].slice(0, 3);
+  replies.forEach(function(q) {
+    var btn = document.createElement('button');
+    btn.className = 'widget-quick-btn';
+    btn.textContent = q;
+    btn.onclick = function() {
+      document.getElementById('widgetInput').value = q;
+      sendWidgetMessage();
+    };
+    wrap.appendChild(btn);
+  });
+}
+
+function showWidgetTyping() { document.getElementById('widgetTyping').classList.add('show'); document.getElementById('widgetMsgs').scrollTop = 99999; }
+function hideWidgetTyping() { document.getElementById('widgetTyping').classList.remove('show'); }
+
+document.getElementById('widgetInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendWidgetMessage(); }
+});
+
+async function sendWidgetMessage() {
+  if (WIDGET_BUSY) return;
+  var inp = document.getElementById('widgetInput');
+  var text = inp.value.trim();
+  if (!text) return;
+  var key = localStorage.getItem('cj_apikey');
+  if (!key) { openModal('setupModal'); return; }
+  var model = localStorage.getItem('cj_model') || 'llama-3.3-70b-versatile';
+
+  inp.value = '';
+  document.getElementById('widgetQuick').innerHTML = '';
+  if (WIDGET_HISTORY.length === 0) WIDGET_HISTORY = [{ role: 'system', content: SYSTEM_PROMPTS[MODE](getBizName()) }];
+
+  addWidgetMessage('user', text);
+  WIDGET_HISTORY.push({ role: 'user', content: text });
+  WIDGET_BUSY = true;
+  document.getElementById('widgetSendBtn').disabled = true;
+  showWidgetTyping();
+
+  try {
+    var res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key },
+      body: JSON.stringify({ model: model, messages: WIDGET_HISTORY, temperature: 0.72, max_tokens: 350, stream: true })
+    });
+    if (!res.ok) throw new Error('Erreur ' + res.status);
+    hideWidgetTyping();
+    var bubble = addWidgetMessage('bot', '');
+    var fullText = '';
+    var reader = res.body.getReader();
+    var decoder = new TextDecoder();
+    while (true) {
+      var chunk = await reader.read();
+      if (chunk.done) break;
+      var lines = decoder.decode(chunk.value, {stream:true}).split('\n');
+      for (var i = 0; i < lines.length; i++) {
+        var line = lines[i].trim();
+        if (!line || line === 'data: [DONE]') continue;
+        if (line.startsWith('data: ')) {
+          try {
+            var data = JSON.parse(line.slice(6));
+            var delta = data.choices[0].delta.content;
+            if (delta) { fullText += delta; bubble.textContent = fullText; document.getElementById('widgetMsgs').scrollTop = 99999; }
+          } catch(e) {}
+        }
+      }
+    }
+    WIDGET_HISTORY.push({ role: 'assistant', content: fullText });
+    if (!WIDGET_OPEN) { WIDGET_UNREAD++; var badge = document.getElementById('bubbleBadge'); badge.textContent = WIDGET_UNREAD; badge.classList.add('show'); }
+  } catch(e) {
+    hideWidgetTyping();
+    addWidgetMessage('bot', '⚠️ ' + (e.message || 'Erreur de connexion.'));
+  }
+  WIDGET_BUSY = false;
+  document.getElementById('widgetSendBtn').disabled = false;
 }
 
 // ── TOAST ──
