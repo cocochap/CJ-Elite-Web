@@ -504,7 +504,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:4rem 0 2.
     <ul class="nav-links">
       <li><a href="#prob">Problème</a></li>
       <li><a href="#sol">Solution</a></li>
-      <li><a href="#exemples">Exemples</a></li>
+      <li><a href="/demo" target="_blank" style="color:var(--gold);">Démo live</a></li>
       <li><a href="#pricing">Tarifs</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
@@ -520,7 +520,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:4rem 0 2.
   <button class="mob-close" id="mob-close">&times;</button>
   <a href="#prob">Problème</a>
   <a href="#sol">Solution</a>
-  <a href="#exemples">Exemples</a>
+  <a href="/demo" target="_blank" style="color:var(--gold);">Démo live ↗</a>
   <a href="#pricing">Tarifs</a>
   <a href="#faq">FAQ</a>
   <a href="javascript:void(0)" onclick="Calendly.initPopupWidget({url:'https://calendly.com/corentinchappelet-pro/20min'});document.getElementById('mob').classList.remove('open');" class="btn-p">Démo gratuite</a>
@@ -535,7 +535,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:4rem 0 2.
     <p class="hero-sub">Votre agent IA répond à vos clients en moins de 3 secondes — sur Instagram, WhatsApp et votre site — même à 23h. Vous gérez votre métier. L'IA gère les messages.</p>
     <div class="hero-acts">
       <a href="javascript:void(0)" onclick="Calendly.initPopupWidget({url:'https://calendly.com/corentinchappelet-pro/20min'});" class="btn-p"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Démo gratuite — 20 min</a>
-      <a href="#exemples" class="btn-g">Voir des exemples</a>
+      <a href="/demo" target="_blank" class="btn-g"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Tester l'agent IA →</a>
     </div>
     <div class="hero-hint"><svg width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Setup clé en main · <strong>299€</strong> · 1er mois de support offert</div>
     <div class="hero-stats">
@@ -646,6 +646,23 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:4rem 0 2.
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO LIVE -->
+<section id="demo-live" style="background:var(--bg2);padding:7rem 0;">
+  <div class="ctr">
+    <div class="rev" style="text-align:center;margin-bottom:3rem;">
+      <p class="slabel" style="justify-content:center;">Démo interactive</p>
+      <h2 class="disp">Testez l'agent<br><em>en live.</em></h2>
+      <p class="sint" style="text-align:center;margin:0 auto;max-width:500px;">Choisissez votre type d'établissement, entrez son nom, et discutez avec un vrai agent IA — exactement ce que recevront vos clients.</p>
+    </div>
+    <div class="rev" style="border-radius:20px;overflow:hidden;border:1px solid var(--borderg);box-shadow:0 40px 80px rgba(0,0,0,.5);position:relative;">
+      <iframe src="/demo.html" style="width:100%;height:640px;border:none;display:block;" title="Agent IA CJ Elite — Démo interactive" loading="lazy"></iframe>
+    </div>
+    <div class="rev" style="text-align:center;margin-top:1.5rem;">
+      <a href="/demo" target="_blank" style="font-family:var(--m);font-size:12px;color:var(--g3);text-decoration:none;letter-spacing:.06em;transition:color .2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--g3)'">Ouvrir en plein écran ↗</a>
     </div>
   </div>
 </section>
