@@ -1194,29 +1194,10 @@ function startScrollHero(preloaded) {
     }
   }
 
-  function onDelta(delta) {
-    if (PHASE !== 2) return;
-    if (expanded) {
-      if (delta < 0 && window.scrollY <= 2) {
-        expanded = false;
-        document.body.style.overflow = 'hidden';
-        window.scrollTo(0,0);
-      }
-      return;
-    }
-    prog = Math.min(1, Math.max(0, prog + delta * 0.0007));
-    apply(prog);
-    if (prog >= 1) {
-      expanded = true;
-      endScrollHero();
-    }
-  }
-
   function endScrollHero() {
     PHASE = 3;
     document.body.style.overflow = '';
 
-    // Voile noir fugace pour adoucir le passage photo → site
     var veil = document.createElement('div');
     veil.style.cssText = 'position:fixed;inset:0;z-index:9500;pointer-events:none;' +
       'background:#080808;opacity:0;transition:opacity .28s ease';
@@ -1224,7 +1205,6 @@ function startScrollHero(preloaded) {
     requestAnimationFrame(function(){ veil.style.opacity = '.65'; });
 
     setTimeout(function() {
-      // Photo intégrée au flux normal
       section.style.position = 'relative';
       section.style.zIndex   = '1';
       section.style.height   = '100dvh';
@@ -1234,36 +1214,94 @@ function startScrollHero(preloaded) {
       window.scrollTo(0, sw.offsetTop);
       initSite();
 
-      // Le voile se dissipe, révélant le site
       veil.style.transition = 'opacity .45s ease';
       veil.style.opacity    = '0';
       setTimeout(function(){ if (veil.parentNode) veil.parentNode.removeChild(veil); }, 500);
     }, 280);
   }
 
+  // ── Wheel (desktop, toujours actif) ──
   window.addEventListener('wheel', function(e) {
-    if (PHASE !== 2) return;
-    if (expanded) return;
+    if (PHASE !== 2 || expanded) return;
     e.preventDefault();
-    onDelta(e.deltaY);
-  }, { passive: false });
-
-  window.addEventListener('touchstart', function(e) {
-    ty = e.touches[0].clientY;
-  }, { passive: true });
-
-  window.addEventListener('touchmove', function(e) {
-    if (PHASE !== 2) return;
-    if (expanded) return;
-    e.preventDefault();
-    var dy = ty - e.touches[0].clientY;
-    ty = e.touches[0].clientY;
-    onDelta(dy * 1.4);
+    prog = Math.min(1, Math.max(0, prog + e.deltaY * 0.0007));
+    apply(prog);
+    if (prog >= 1) { expanded = true; endScrollHero(); }
   }, { passive: false });
 
   window.addEventListener('scroll', function() {
     if (PHASE === 2 && !expanded) window.scrollTo(0,0);
   });
+
+  if (window.innerWidth < 768) {
+    // ── MOBILE : tap ou swipe vers le haut → animation automatique ──
+    var triggered = false;
+    var ty0 = 0;
+
+    // Hint flottant
+    var hint = document.createElement('div');
+    hint.style.cssText = 'position:fixed;bottom:2.2rem;left:0;right:0;z-index:9100;pointer-events:none;' +
+      'display:flex;flex-direction:column;align-items:center;gap:6px;' +
+      'opacity:0;transition:opacity .5s ease';
+    hint.innerHTML =
+      '<svg width="22" height="22" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5" ' +
+      'viewBox="0 0 24 24" style="animation:fl 2s ease-in-out infinite">' +
+      '<path d="M5 15l7-7 7 7"/></svg>' +
+      '<span style="font-family:var(--m);font-size:10px;letter-spacing:.16em;' +
+      'text-transform:uppercase;color:rgba(255,255,255,.35);">Glissez pour continuer</span>';
+    document.body.appendChild(hint);
+    setTimeout(function(){ if (!triggered) hint.style.opacity = '1'; }, 950);
+
+    function triggerExpand() {
+      if (triggered) return;
+      triggered = true;
+      clearTimeout(autoTimer);
+      hint.style.opacity = '0';
+
+      // Animation automatique : photo se déploie en plein écran (sans suivi du doigt)
+      var t0 = performance.now(), DUR = 850;
+      function tick(now) {
+        var t = Math.min((now - t0) / DUR, 1);
+        var e = t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3) * .5; // cubic ease in-out
+        apply(e);
+        if (t < 1) { requestAnimationFrame(tick); }
+        else {
+          expanded = true;
+          if (hint.parentNode) hint.parentNode.removeChild(hint);
+          endScrollHero();
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+
+    // Auto-déclenchement après 2.8s si l'utilisateur ne fait rien
+    var autoTimer = setTimeout(triggerExpand, 2800);
+
+    window.addEventListener('touchstart', function(e) {
+      ty0 = e.touches[0].clientY;
+    }, { passive: true });
+
+    window.addEventListener('touchend', function(e) {
+      if (PHASE !== 2 || triggered) return;
+      var dy = ty0 - e.changedTouches[0].clientY;
+      // Swipe vers le haut (>30px) OU tap (<12px de mouvement)
+      if (dy > 30 || Math.abs(dy) < 12) triggerExpand();
+    }, { passive: true });
+
+  } else {
+    // ── DESKTOP : expansion calée sur le scroll / trackpad ──
+    window.addEventListener('touchstart', function(e) { ty = e.touches[0].clientY; }, { passive: true });
+
+    window.addEventListener('touchmove', function(e) {
+      if (PHASE !== 2 || expanded) return;
+      e.preventDefault();
+      var dy = ty - e.touches[0].clientY;
+      ty = e.touches[0].clientY;
+      prog = Math.min(1, Math.max(0, prog + dy * 1.4 * 0.0007));
+      apply(prog);
+      if (prog >= 1) { expanded = true; endScrollHero(); }
+    }, { passive: false });
+  }
 }
 
 // ── PHASE 3: SITE ──
