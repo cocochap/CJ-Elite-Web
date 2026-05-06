@@ -873,6 +873,108 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:4rem 0 2.
 }
 </style>
 
+<!-- CALCULATEUR ROI -->
+<style>
+.calc-field{background:var(--surf);border:1px solid var(--border);border-radius:14px;padding:1.5rem;transition:border-color .25s}
+.calc-field:focus-within{border-color:var(--borderg)}
+.calc-label{font-size:13px;color:var(--g2);font-weight:500}
+.calc-val-badge{font-size:13px;font-weight:700;color:var(--gold);font-family:var(--m);background:var(--golddim);border:1px solid var(--borderg);padding:3px 10px;border-radius:100px}
+.calc-slider{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:2px;background:linear-gradient(to right,var(--gold) var(--fill,35%),rgba(255,255,255,.08) var(--fill,35%));outline:none;cursor:pointer;margin-top:.5rem}
+.calc-slider::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--gold);cursor:pointer;box-shadow:0 2px 10px rgba(212,175,55,.55);transition:transform .15s}
+.calc-slider::-webkit-slider-thumb:hover{transform:scale(1.18)}
+.calc-slider::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--gold);cursor:pointer;border:none;box-shadow:0 2px 10px rgba(212,175,55,.55)}
+.calc-preset{font-size:13px;padding:8px 16px;border-radius:8px;transition:all .2s;cursor:pointer}
+.calc-preset.on{border-color:var(--borderg)!important;color:var(--gold)!important;background:var(--golddim)!important}
+.calc-out-perdu-num{font-size:3.8rem;font-weight:800;color:var(--w);letter-spacing:-.05em;line-height:1}
+@media(max-width:900px){#calc-grid{grid-template-columns:1fr!important}}
+@media(max-width:640px){#calc-sticky{position:static!important;top:auto!important}}
+</style>
+<section id="calculateur" style="background:var(--bg);padding:7rem 0;">
+  <div class="ctr">
+    <div class="rev" style="text-align:center;margin-bottom:3.5rem;">
+      <p class="slabel" style="justify-content:center;">Calculateur ROI</p>
+      <h2 class="disp">Combien vous coûte<br>chaque message <em>ignoré ?</em></h2>
+      <p class="sint" style="text-align:center;margin:0 auto;max-width:460px;">Ajustez vos chiffres — on calcule vos pertes en temps réel.</p>
+    </div>
+    <div id="calc-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
+
+      <!-- SLIDERS -->
+      <div class="rev" style="display:flex;flex-direction:column;gap:1.25rem;">
+        <div style="display:flex;gap:8px;margin-bottom:.5rem;">
+          <button class="btn-g calc-preset on" id="preset-resto" onclick="setPreset('restaurant')">🍽️ Restaurant</button>
+          <button class="btn-g calc-preset" id="preset-salon" onclick="setPreset('salon')">✂️ Salon</button>
+        </div>
+
+        <div class="calc-field">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.9rem;">
+            <label class="calc-label">Messages reçus par jour (tous canaux)</label>
+            <span class="calc-val-badge" id="val-msgs">15/jour</span>
+          </div>
+          <input type="range" class="calc-slider" id="calc-msgs" min="2" max="100" value="15" oninput="onCalcChange()"/>
+          <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:var(--g3);font-family:var(--m);"><span>2</span><span>100</span></div>
+        </div>
+
+        <div class="calc-field">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.9rem;">
+            <label class="calc-label">Valeur moyenne par client / réservation</label>
+            <span class="calc-val-badge" id="val-ticket">40 €</span>
+          </div>
+          <input type="range" class="calc-slider" id="calc-ticket" min="15" max="250" value="40" oninput="onCalcChange()"/>
+          <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:var(--g3);font-family:var(--m);"><span>15 €</span><span>250 €</span></div>
+        </div>
+
+        <div class="calc-field">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.9rem;">
+            <label class="calc-label">Votre taux de réponse actuel</label>
+            <span class="calc-val-badge" id="val-reponse">35%</span>
+          </div>
+          <input type="range" class="calc-slider" id="calc-reponse" min="0" max="90" value="35" oninput="onCalcChange()"/>
+          <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:var(--g3);font-family:var(--m);"><span>0%</span><span>90%</span></div>
+        </div>
+
+        <p style="font-size:12px;color:var(--g3);font-family:var(--m);padding:.75rem;background:var(--bg2);border-radius:8px;line-height:1.5;">Chiffres basés sur des études sectorielles CHR et salon. <span style="color:var(--g2);">Votre calcul précis se fait pendant l'appel.</span></p>
+      </div>
+
+      <!-- RÉSULTATS -->
+      <div id="calc-sticky" style="position:sticky;top:80px;display:flex;flex-direction:column;gap:1.25rem;">
+
+        <!-- Perte -->
+        <div class="rev" style="background:var(--surf);border:1px solid var(--border);border-radius:20px;padding:2rem;position:relative;overflow:hidden;">
+          <div class="pc-top" style="background:linear-gradient(90deg,rgba(239,68,68,.5),transparent);"></div>
+          <div style="font-size:11px;font-family:var(--m);color:rgba(239,100,100,.9);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.75rem;">CA perdu chaque mois</div>
+          <div class="calc-out-perdu-num"><span id="calc-out-perdu" data-val="0">0</span> €</div>
+          <div style="font-size:13px;color:var(--g3);margin-top:4px;margin-bottom:1.5rem;">Revenus qui partent chez la concurrence</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding-top:1.25rem;border-top:1px solid var(--border);">
+            <div>
+              <div style="font-size:1.7rem;font-weight:800;color:var(--w);letter-spacing:-.03em;line-height:1;"><span id="calc-out-clients" data-val="0">0</span></div>
+              <div style="font-size:12px;color:var(--g3);margin-top:3px;">clients perdus/mois</div>
+            </div>
+            <div>
+              <div style="font-size:1.7rem;font-weight:800;color:var(--w);letter-spacing:-.03em;line-height:1;"><span id="calc-out-temps" data-val="0">0</span>h</div>
+              <div style="font-size:12px;color:var(--g3);margin-top:3px;">perdues en gestion</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gain -->
+        <div class="rev" style="background:linear-gradient(135deg,rgba(212,175,55,.1),rgba(212,175,55,.04));border:1px solid var(--borderg);border-radius:20px;padding:2rem;">
+          <div style="font-size:11px;font-family:var(--m);color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.75rem;">Avec l'agent CJ Elite</div>
+          <div style="font-size:2.4rem;font-weight:800;color:var(--gold);letter-spacing:-.04em;line-height:1;"><span id="calc-out-gain" data-val="0">0</span> €<span style="font-size:1rem;font-weight:500;color:var(--g2);"> /mois récupérables</span></div>
+          <div style="margin-top:1rem;display:flex;align-items:center;gap:8px;"><div style="width:7px;height:7px;border-radius:50%;background:#4ade80;flex-shrink:0;"></div><span style="font-size:13px;color:var(--g2);">Rentabilisé en <strong style="color:var(--w);"><span id="calc-out-roi" data-val="0">0</span> jours</strong> · setup 299€</span></div>
+        </div>
+
+        <!-- CTA -->
+        <a href="javascript:void(0)" onclick="Calendly.initPopupWidget({url:'https://calendly.com/corentinchappelet-pro/20min'});" class="btn-p rev" style="width:100%;justify-content:center;font-size:15px;padding:17px;">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Obtenir mon analyse personnalisée
+        </a>
+        <p class="rev" style="text-align:center;font-size:12px;color:var(--g3);font-family:var(--m);">Appel gratuit · 20 min · Chiffres précis pour votre établissement</p>
+
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PARALLAX CTA -->
 <div class="par-sect">
   <div class="par-bg"></div><div class="par-ov"></div>
@@ -1509,6 +1611,71 @@ function startScrollHero(preloaded) {
   }
 }
 
+// ── CALCULATEUR ROI ──
+var _calcT = {};
+
+function setPreset(type) {
+  var isResto = type === 'restaurant';
+  document.getElementById('calc-msgs').value    = isResto ? 15 : 10;
+  document.getElementById('calc-ticket').value  = isResto ? 40 : 55;
+  document.getElementById('calc-reponse').value = isResto ? 35 : 45;
+  document.getElementById('preset-resto').classList.toggle('on', isResto);
+  document.getElementById('preset-salon').classList.toggle('on', !isResto);
+  onCalcChange();
+}
+
+function onCalcChange() {
+  var msgs    = parseInt(document.getElementById('calc-msgs').value);
+  var ticket  = parseInt(document.getElementById('calc-ticket').value);
+  var reponse = parseInt(document.getElementById('calc-reponse').value);
+
+  document.getElementById('val-msgs').textContent    = msgs + '/jour';
+  document.getElementById('val-ticket').textContent  = ticket + ' €';
+  document.getElementById('val-reponse').textContent = reponse + '%';
+
+  _fillSlider('calc-msgs',    msgs,    2,   100);
+  _fillSlider('calc-ticket',  ticket,  15,  250);
+  _fillSlider('calc-reponse', reponse, 0,   90);
+
+  var perduJour        = msgs * (1 - reponse / 100);
+  var clientsPerduJour = perduJour * 0.60 * 0.50;
+  var clientsMois      = Math.round(clientsPerduJour * 30);
+  var caPerdu          = Math.round(clientsMois * ticket);
+  var tempsMois        = Math.round(msgs * 30 * 4 / 60);
+  var caGain           = Math.round(caPerdu * 0.85);
+  var joursRetour      = caGain > 0 ? Math.min(Math.ceil(299 / (caGain / 30)), 90) : 0;
+
+  _animCalc('calc-out-perdu',   caPerdu,    '', '');
+  _animCalc('calc-out-clients', clientsMois,'', '');
+  _animCalc('calc-out-temps',   tempsMois,  '', '');
+  _animCalc('calc-out-gain',    caGain,     '', '');
+  _animCalc('calc-out-roi',     joursRetour,'', '');
+}
+
+function _fillSlider(id, val, min, max) {
+  var pct = ((val - min) / (max - min) * 100).toFixed(1) + '%';
+  document.getElementById(id).style.setProperty('--fill', pct);
+}
+
+function _animCalc(id, target, pre, suf) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  if (_calcT[id]) cancelAnimationFrame(_calcT[id]);
+  var from = parseInt(el.getAttribute('data-val') || 0);
+  var diff = target - from, start = null, dur = 500;
+  function step(now) {
+    if (!start) start = now;
+    var t    = Math.min((now - start) / dur, 1);
+    var ease = 1 - Math.pow(1 - t, 3);
+    var val  = Math.round(from + diff * ease);
+    el.textContent = pre + val.toLocaleString('fr-FR') + suf;
+    el.setAttribute('data-val', val);
+    if (t < 1) _calcT[id] = requestAnimationFrame(step);
+    else { el.textContent = pre + target.toLocaleString('fr-FR') + suf; el.setAttribute('data-val', target); }
+  }
+  _calcT[id] = requestAnimationFrame(step);
+}
+
 // ── PHASE 3: SITE ──
 function initSite() {
   // NAV
@@ -1617,6 +1784,9 @@ function initSite() {
       });
     });
   })();
+
+  // CALCULATEUR ROI — init
+  if (document.getElementById('calc-msgs')) onCalcChange();
 
   // EXEMPLES CAROUSEL DOTS (mobile)
   (function(){
