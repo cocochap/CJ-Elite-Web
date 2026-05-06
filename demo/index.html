@@ -420,12 +420,13 @@ Pour les RDV :
   }
 };
 
-// ── CLÉ PAR DÉFAUT ── (remplace '' par ta clé gsk_...)
+// ── CLÉ PAR DÉFAUT ── accessible via ?access=cjelite uniquement
 var DEFAULT_KEY = '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';
 
 // ── INIT ──
 window.addEventListener('DOMContentLoaded', function() {
-  if (DEFAULT_KEY && !localStorage.getItem('cj_apikey')) {
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('access') === 'cjelite' && DEFAULT_KEY) {
     localStorage.setItem('cj_apikey', DEFAULT_KEY);
   }
   var saved = localStorage.getItem('cj_apikey');
