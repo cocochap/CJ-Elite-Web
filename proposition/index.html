@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
 :root{--bg:#080808;--gold:#D4AF37;--gold2:#B8941F;--w:#fff;--muted:rgba(255,255,255,.5);--border:rgba(212,175,55,.18)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -137,6 +138,22 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:13px;heigh
 /* Footer */
 .doc-footer{text-align:center;font-size:.62rem;color:#aaa;padding:.5rem 2rem 2.5rem;line-height:1.7}
 
+/* ── Send modal ── */
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:999;opacity:0;pointer-events:none;transition:opacity .2s}
+.modal-ov.open{opacity:1;pointer-events:all}
+.modal-box{background:#111;border:1px solid var(--border);border-radius:14px;padding:2rem;width:420px;max-width:90vw}
+.modal-box h3{font-size:1rem;font-weight:700;color:var(--w);margin-bottom:.3rem}
+.modal-box p{font-size:.76rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.5}
+.modal-inp{width:100%;background:#1a1a1a;border:1.5px solid rgba(255,255,255,.1);border-radius:8px;padding:.62rem .85rem;color:var(--w);font-family:'Geist',sans-serif;font-size:.82rem;outline:none;transition:border-color .15s;margin-bottom:.75rem}
+.modal-inp:focus{border-color:var(--gold)}
+.modal-btns{display:flex;gap:.6rem}
+.modal-send{flex:1;background:var(--gold);color:#000;border:none;padding:.65rem 1rem;border-radius:8px;font-family:'Geist',sans-serif;font-size:.8rem;font-weight:700;cursor:pointer;transition:opacity .15s}
+.modal-send:hover{opacity:.85}
+.modal-send:disabled{opacity:.5;cursor:default}
+.modal-cancel{background:rgba(255,255,255,.07);color:var(--muted);border:none;padding:.65rem 1rem;border-radius:8px;font-family:'Geist',sans-serif;font-size:.8rem;cursor:pointer}
+.modal-cancel:hover{background:rgba(255,255,255,.1)}
+.modal-status{font-size:.74rem;margin-top:.6rem;min-height:1rem;text-align:center}
+
 /* ── Print ── */
 @media print{
   body{overflow:visible;height:auto;background:#fff}
@@ -155,10 +172,27 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:13px;heigh
 <div class="hdr">
   <div class="hdr-logo">CJ Elite Web</div>
   <div class="hdr-title">Générateur de proposition commerciale</div>
-  <button class="btn-pdf" onclick="window.print()">
-    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path d="M12 16V4M8 12l4 4 4-4"/><path d="M4 20h16"/></svg>
-    Télécharger PDF
+  <button class="btn-pdf" onclick="openSendModal()">
+    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>
+    Envoyer par email
   </button>
+</div>
+
+<!-- Send modal -->
+<div class="modal-ov" id="send-modal">
+  <div class="modal-box">
+    <h3>Envoyer la proposition</h3>
+    <p>La proposition sera envoyée directement au prospect et une copie vous sera transmise.</p>
+    <input class="modal-inp" id="modal-email" type="email" placeholder="Email du prospect" autocomplete="off"/>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeSendModal()">Annuler</button>
+      <button class="modal-send" id="modal-send-btn" onclick="sendProposition()">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" style="display:inline-block;vertical-align:middle;margin-right:.3rem"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+        Envoyer
+      </button>
+    </div>
+    <div class="modal-status" id="modal-status"></div>
+  </div>
 </div>
 
 <div class="app">
@@ -527,6 +561,127 @@ function upd(){
 }
 
 upd();
+
+// ── EmailJS config ──
+var _EJS_PK  = '_X2pGwIHQDreFzMlR';
+var _EJS_SVC = 'service_9kipmnr';
+var _EJS_TPL = 'template_qaxpa29';
+
+function openSendModal(){
+  // Pré-remplir avec l'email si déjà dans un champ du formulaire
+  document.getElementById('modal-email').value='';
+  document.getElementById('modal-status').textContent='';
+  document.getElementById('modal-send-btn').disabled=false;
+  document.getElementById('modal-send-btn').innerHTML='<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" style="display:inline-block;vertical-align:middle;margin-right:.3rem"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg> Envoyer';
+  document.getElementById('send-modal').classList.add('open');
+  setTimeout(function(){document.getElementById('modal-email').focus()},120);
+}
+
+function closeSendModal(){
+  document.getElementById('send-modal').classList.remove('open');
+}
+
+function sendProposition(){
+  var email=document.getElementById('modal-email').value.trim();
+  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    document.getElementById('modal-status').textContent='Entrez un email valide.';
+    document.getElementById('modal-status').style.color='#ef4444';
+    return;
+  }
+
+  var btn=document.getElementById('modal-send-btn');
+  btn.disabled=true;
+  btn.textContent='Envoi…';
+  document.getElementById('modal-status').textContent='';
+
+  var prenom=document.getElementById('f-prenom').value.trim()||'';
+  var nom=document.getElementById('f-nom').value.trim()||'';
+  var etab=document.getElementById('f-etab').value.trim()||'Votre établissement';
+  var ville=document.getElementById('f-ville').value.trim()||'';
+  var s=document.getElementById('f-secteur').value;
+  var notes=document.getElementById('f-notes').value.trim()||'';
+  var fullName=[prenom,nom].filter(Boolean).join(' ')||'Bonjour';
+  var modeLabel=s==='salon'?'Salon de coiffure':s==='hotel'?'Hôtel':'Restaurant';
+  var off=OFFRES[_offre];
+  var d=roi();
+
+  var body=
+    'Bonjour '+fullName+',\n\n'
+    +'Suite à notre échange, voici votre proposition commerciale personnalisée.\n\n'
+    +'─────────────────────────────────────\n'
+    +'ÉTABLISSEMENT : '+(etab+(ville?' · '+ville:'')).toUpperCase()+' · '+modeLabel.toUpperCase()+'\n'
+    +'─────────────────────────────────────\n\n'
+    +'DIAGNOSTIC — VOS PERTES ACTUELLES\n'
+    +'  CA perdu par mois       →  '+fmt(d.ca)+' €\n'
+    +'  Clients perdus / mois   →  '+d.cl+'\n'
+    +'  Heures perdues / mois   →  '+d.th+'h\n\n'
+    +'─────────────────────────────────────\n'
+    +'AVEC UN AGENT IA CJ ELITE\n'
+    +'─────────────────────────────────────\n'
+    +'  CA récupérable          →  +'+fmt(d.gain)+' €/mois\n'
+    +'  Retour sur investissement →  '+d.jr+' jours\n'
+    +'  Gain estimé (an 1)      →  +'+fmt(Math.max(0,d.gain*12-d.men*12))+' €\n\n'
+    +'─────────────────────────────────────\n'
+    +'OFFRE PROPOSÉE : '+off.name.toUpperCase()+'\n'
+    +'─────────────────────────────────────\n'
+    +(off.mensuel?'  Setup (une seule fois)   →  '+off.setup+' € HT\n  Abonnement mensuel     →  '+off.mensuel+' € HT / mois\n  Engagement             →  Aucun, résiliation libre\n':'  Tarification sur devis après audit gratuit\n')
+    +'\n'
+    +'MISE EN PLACE\n'
+    +'  J+1 : Appel de cadrage (30 min)\n'
+    +'  J+2 : Configuration & tests\n'
+    +'  J+4 : Intégration sur votre site\n'
+    +'  J+7 : Lancement & formation\n\n'
+    +'─────────────────────────────────────\n'
+    +'PROCHAINE ÉTAPE\n'
+    +'─────────────────────────────────────\n'
+    +'Réservez votre appel de cadrage offert (20 min) :\n'
+    +'https://calendly.com/corentinchappelet-pro/20min\n\n'
+    +(notes?'Note de notre échange : '+notes+'\n\n':'')
+    +'À très bientôt,\n'
+    +'Corentin & Jauffrey\n'
+    +'CJ Elite Web\n'
+    +'corentinchappelet.pro@gmail.com · 06 30 75 04 85\n'
+    +'cjeliteweb.com';
+
+  var subject='Proposition commerciale — '+etab+' ('+modeLabel+')';
+
+  // 1. Web3Forms → notification interne à Corentin
+  fetch('https://api.web3forms.com/submit',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({
+      access_key:'ef238e4c-df61-4839-ac4f-dcb419bf92c5',
+      subject:'[Proposition envoyée] '+etab+' — '+email,
+      from_name:'CJ Elite Web — Générateur',
+      replyto:email,
+      message:'Proposition envoyée à '+email+' pour '+etab+' ('+modeLabel+').\n\nOffre : '+off.name+'\nCA perdu : '+fmt(d.ca)+' €/mois\nGain estimé : +'+fmt(d.gain)+' €/mois\n\n'+body
+    })
+  }).catch(function(){});
+
+  // 2. EmailJS → email direct au prospect
+  emailjs.send(_EJS_SVC,_EJS_TPL,{
+    to_name:fullName,
+    to_email:email,
+    subject:subject,
+    message:body
+  },_EJS_PK)
+  .then(function(){
+    document.getElementById('modal-status').textContent='✓ Proposition envoyée avec succès.';
+    document.getElementById('modal-status').style.color='#4ade80';
+    setTimeout(closeSendModal,1800);
+  })
+  .catch(function(){
+    document.getElementById('modal-status').textContent='Erreur d\'envoi — vérifiez votre connexion.';
+    document.getElementById('modal-status').style.color='#ef4444';
+    btn.disabled=false;
+    btn.textContent='Réessayer';
+  });
+}
+
+// Fermer la modale en cliquant sur l'overlay
+document.getElementById('send-modal').addEventListener('click',function(e){
+  if(e.target===this)closeSendModal();
+});
 </script>
 </body>
 </html>
