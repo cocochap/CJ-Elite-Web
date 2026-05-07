@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 :root{--bg:#080808;--gold:#D4AF37;--gold2:#B8941F;--w:#fff;--muted:rgba(255,255,255,.5);--border:rgba(212,175,55,.18)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -17,8 +19,12 @@ body{font-family:'Geist',sans-serif;background:var(--bg);color:var(--w);height:1
 .hdr{display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:54px;border-bottom:1px solid var(--border);flex-shrink:0;background:#090909}
 .hdr-logo{font-size:.75rem;font-weight:800;color:var(--gold);letter-spacing:.14em;text-transform:uppercase}
 .hdr-title{font-size:.75rem;color:var(--muted);font-weight:400}
+.hdr-btns{display:flex;gap:.5rem}
 .btn-pdf{display:flex;align-items:center;gap:.45rem;background:var(--gold);color:#000;border:none;padding:.48rem 1.2rem;border-radius:6px;font-family:'Geist',sans-serif;font-size:.78rem;font-weight:700;cursor:pointer;letter-spacing:.04em;transition:opacity .15s}
 .btn-pdf:hover{opacity:.85}
+.btn-pdf:disabled{opacity:.5;cursor:default}
+.btn-email{display:flex;align-items:center;gap:.45rem;background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,.12);padding:.48rem 1.1rem;border-radius:6px;font-family:'Geist',sans-serif;font-size:.78rem;font-weight:500;cursor:pointer;letter-spacing:.03em;transition:all .15s}
+.btn-email:hover{border-color:rgba(255,255,255,.3);color:var(--w)}
 
 /* ── Layout ── */
 .app{display:grid;grid-template-columns:370px 1fr;height:calc(100vh - 54px);overflow:hidden}
@@ -172,10 +178,16 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:13px;heigh
 <div class="hdr">
   <div class="hdr-logo">CJ Elite Web</div>
   <div class="hdr-title">Générateur de proposition commerciale</div>
-  <button class="btn-pdf" onclick="openSendModal()">
-    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>
-    Envoyer par email
-  </button>
+  <div class="hdr-btns">
+    <button class="btn-email" onclick="openSendModal()">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>
+      Envoyer par email
+    </button>
+    <button class="btn-pdf" id="btn-dl" onclick="downloadPDF()">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path d="M12 16V4M8 12l4 4 4-4"/><path d="M4 20h16"/></svg>
+      Télécharger PDF
+    </button>
+  </div>
 </div>
 
 <!-- Send modal -->
@@ -561,6 +573,40 @@ function upd(){
 }
 
 upd();
+
+// ── PDF download ──
+function downloadPDF(){
+  var btn=document.getElementById('btn-dl');
+  btn.disabled=true;
+  btn.innerHTML='<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" style="animation:spin 1s linear infinite"><path d="M12 2a10 10 0 0 1 10 10"/></svg> Génération…';
+
+  var el=document.getElementById('proposal-doc');
+  var etab=document.getElementById('f-etab').value.trim()||'Proposition';
+  var filename='CJ-Elite-Web_'+etab.replace(/[^a-zA-Z0-9]/g,'_')+'.pdf';
+
+  html2canvas(el,{scale:2,useCORS:true,backgroundColor:'#ededeb',logging:false})
+  .then(function(canvas){
+    var pdf=new jspdf.jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
+    var pageW=210, pageH=297;
+    var imgW=pageW;
+    var imgH=canvas.height*imgW/canvas.width;
+    var img=canvas.toDataURL('image/jpeg',0.92);
+    var y=0;
+    pdf.addImage(img,'JPEG',0,y,imgW,imgH);
+    while(imgH-Math.abs(y)>pageH){
+      y-=pageH;
+      pdf.addPage();
+      pdf.addImage(img,'JPEG',0,y,imgW,imgH);
+    }
+    pdf.save(filename);
+    btn.disabled=false;
+    btn.innerHTML='<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path d="M12 16V4M8 12l4 4 4-4"/><path d="M4 20h16"/></svg> Télécharger PDF';
+  })
+  .catch(function(){
+    btn.disabled=false;
+    btn.innerHTML='<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path d="M12 16V4M8 12l4 4 4-4"/><path d="M4 20h16"/></svg> Télécharger PDF';
+  });
+}
 
 // ── EmailJS config ──
 var _EJS_PK  = '_X2pGwIHQDreFzMlR';
