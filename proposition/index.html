@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Proposition Commerciale — CJ Elite Web</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#080808;--gold:#D4AF37;--gold2:#B8941F;--w:#fff;--muted:rgba(255,255,255,.5);--border:rgba(212,175,55,.18)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Geist',sans-serif;background:var(--bg);color:var(--w);height:100vh;overflow:hidden;display:flex;flex-direction:column}
+
+/* ── Header ── */
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:54px;border-bottom:1px solid var(--border);flex-shrink:0;background:#090909}
+.hdr-logo{font-size:.75rem;font-weight:800;color:var(--gold);letter-spacing:.14em;text-transform:uppercase}
+.hdr-title{font-size:.75rem;color:var(--muted);font-weight:400}
+.btn-pdf{display:flex;align-items:center;gap:.45rem;background:var(--gold);color:#000;border:none;padding:.48rem 1.2rem;border-radius:6px;font-family:'Geist',sans-serif;font-size:.78rem;font-weight:700;cursor:pointer;letter-spacing:.04em;transition:opacity .15s}
+.btn-pdf:hover{opacity:.85}
+
+/* ── Layout ── */
+.app{display:grid;grid-template-columns:370px 1fr;height:calc(100vh - 54px);overflow:hidden}
+
+/* ── Form panel ── */
+.fp{overflow-y:auto;padding:1.4rem;border-right:1px solid var(--border);background:#0a0a0a;scrollbar-width:thin;scrollbar-color:rgba(212,175,55,.3) transparent}
+.fp::-webkit-scrollbar{width:4px}
+.fp::-webkit-scrollbar-thumb{background:rgba(212,175,55,.25);border-radius:2px}
+
+.fs{margin-bottom:1.6rem}
+.fs-title{font-size:.6rem;font-weight:700;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.7rem;padding-bottom:.45rem;border-bottom:1px solid var(--border)}
+
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+.fg{margin-bottom:.55rem}
+.fg label{display:block;font-size:.68rem;color:var(--muted);margin-bottom:.28rem;font-weight:500}
+.fg input,.fg select,.fg textarea{width:100%;background:#141414;border:1px solid rgba(255,255,255,.09);border-radius:6px;padding:.52rem .72rem;color:var(--w);font-family:'Geist',sans-serif;font-size:.79rem;outline:none;transition:border-color .15s;-webkit-appearance:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold)}
+.fg select option{background:#141414}
+.fg textarea{resize:vertical;min-height:66px}
+
+/* Slider */
+.sr{display:flex;align-items:center;gap:.7rem}
+.sv{font-size:.79rem;font-weight:600;color:var(--gold);min-width:44px;text-align:right}
+input[type=range]{-webkit-appearance:none;flex:1;height:3px;background:linear-gradient(to right,var(--gold) var(--fill,0%),rgba(255,255,255,.1) var(--fill,0%));border-radius:2px;outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:13px;height:13px;border-radius:50%;background:var(--gold)}
+
+/* Offre pills */
+.op-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.op{border:1.5px solid rgba(255,255,255,.1);border-radius:8px;padding:.6rem .7rem;cursor:pointer;transition:border-color .15s,background .15s;text-align:center}
+.op:hover{border-color:rgba(212,175,55,.5)}
+.op.on{border-color:var(--gold);background:rgba(212,175,55,.07)}
+.op-price{font-size:.8rem;font-weight:700;color:var(--gold);display:block}
+.op-label{font-size:.62rem;color:var(--muted);display:block;margin-top:.12rem}
+
+/* ── Preview panel ── */
+.pp{overflow-y:auto;background:#ededeb;scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.15) transparent}
+.pp::-webkit-scrollbar{width:5px}
+.pp::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:2px}
+
+/* ── PROPOSAL DOCUMENT ── */
+.doc{max-width:840px;margin:0 auto;padding:2rem;font-family:'Geist',sans-serif;color:#111}
+
+/* Cover */
+.cover{background:linear-gradient(140deg,#060606 0%,#181818 100%);color:#fff;min-height:520px;border-radius:14px;padding:2.75rem;margin-bottom:1.75rem;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:-80px;right:-80px;width:320px;height:320px;background:radial-gradient(circle,rgba(212,175,55,.15) 0%,transparent 68%);border-radius:50%;pointer-events:none}
+.cover::after{content:'';position:absolute;bottom:-40px;left:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(212,175,55,.07) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.cover-logo{font-size:.7rem;font-weight:800;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;position:relative}
+.cover-mid{flex:1;display:flex;flex-direction:column;justify-content:center;padding:2rem 0;position:relative}
+.cover-tag{font-size:.65rem;color:rgba(255,255,255,.45);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.7rem}
+.cover-h1{font-size:2.1rem;font-weight:800;line-height:1.15;margin-bottom:1rem}
+.cover-h1 span{color:var(--gold)}
+.cover-prospect{font-size:.88rem;color:rgba(255,255,255,.55)}
+.cover-bot{display:flex;justify-content:space-between;align-items:flex-end;font-size:.68rem;color:rgba(255,255,255,.38);border-top:1px solid rgba(255,255,255,.09);padding-top:1.2rem;position:relative}
+.cover-bot-r{text-align:right}
+
+/* Section block */
+.sec{background:#fff;border-radius:12px;padding:1.75rem 2rem;margin-bottom:1.25rem;border:1px solid #e4e4e2}
+.sec-lbl{font-size:.58rem;font-weight:700;color:var(--gold2);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem}
+.sec-h{font-size:1.1rem;font-weight:700;color:#0a0a0a;margin-bottom:.9rem;line-height:1.3}
+.ptxt{font-size:.81rem;color:#444;line-height:1.65;margin-bottom:.7rem}
+
+/* Diag grid */
+.dg{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin:1rem 0}
+.db{background:#f9f9f7;border:1px solid #eee;border-radius:8px;padding:.9rem;text-align:center}
+.db-val{font-size:1.35rem;font-weight:800;color:#c0392b;display:block}
+.db-lbl{font-size:.62rem;color:#999;display:block;margin-top:.22rem}
+.src{font-size:.62rem;color:#c0c0c0;margin-top:.7rem;font-style:italic}
+
+/* Solution list */
+.sol-list{display:flex;flex-direction:column;gap:.55rem;margin-top:.75rem}
+.sol-item{display:flex;align-items:flex-start;gap:.7rem;font-size:.8rem;color:#333;line-height:1.45}
+.sol-ico{width:20px;height:20px;background:rgba(212,175,55,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.62rem;color:var(--gold2);font-weight:700;margin-top:.05rem}
+
+/* ROI */
+.roi-g{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:1rem 0}
+.rb{border-radius:8px;padding:1.2rem;text-align:center}
+.rb.neg{background:#fff2f2;border:1px solid #ffd4d4}
+.rb.pos{background:#f0faf4;border:1px solid #b8e6c8}
+.rb-val{font-size:1.55rem;font-weight:800;display:block;margin-bottom:.22rem}
+.rb.neg .rb-val{color:#c0392b}
+.rb.pos .rb-val{color:#16a34a}
+.rb-lbl{font-size:.62rem;color:#888;display:block}
+
+/* Offer table */
+.otbl{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.79rem}
+.otbl th{background:#0a0a0a;color:var(--gold);padding:.7rem 1rem;text-align:left;font-size:.65rem;letter-spacing:.07em;text-transform:uppercase}
+.otbl th:first-child{border-radius:6px 0 0 0}
+.otbl th:last-child{border-radius:0 6px 0 0}
+.otbl td{padding:.68rem 1rem;border-bottom:1px solid #eee;color:#333;vertical-align:top}
+.otbl tr:last-child td{border-bottom:none}
+.otbl tr.hl td{background:#fafaf5;font-weight:600;color:#0a0a0a}
+.obadge{display:inline-block;background:var(--gold);color:#000;font-size:.52rem;font-weight:700;padding:.13rem .38rem;border-radius:3px;letter-spacing:.05em;text-transform:uppercase;margin-left:.4rem;vertical-align:middle}
+
+/* Timeline */
+.tl{display:flex;margin:1rem 0}
+.tl-step{flex:1;text-align:center;position:relative}
+.tl-step::after{content:'';position:absolute;top:13px;left:50%;width:100%;height:2px;background:#e8e8e6}
+.tl-step:last-child::after{display:none}
+.tl-dot{width:26px;height:26px;border-radius:50%;background:var(--gold);color:#000;font-size:.66rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto .45rem;position:relative;z-index:1}
+.tl-day{font-size:.72rem;font-weight:700;color:#111;display:block;margin-bottom:.15rem}
+.tl-lbl{font-size:.62rem;color:#777;line-height:1.3}
+
+/* Cases */
+.case-g{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:.75rem 0}
+.cc{background:#f9f9f7;border:1px solid #eee;border-radius:8px;padding:1rem 1.2rem}
+.cc-sector{font-size:.58rem;color:var(--gold2);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
+.cc-result{font-size:1.05rem;font-weight:800;color:#111;margin-bottom:.28rem}
+.cc-desc{font-size:.72rem;color:#666;line-height:1.4}
+
+/* CTA block */
+.cta-blk{background:linear-gradient(140deg,#060606 0%,#1c1c1c 100%);border-radius:12px;padding:2.25rem;text-align:center;margin-bottom:1.25rem;color:#fff}
+.cta-h{font-size:1.15rem;font-weight:700;margin-bottom:.45rem}
+.cta-h span{color:var(--gold)}
+.cta-sub{font-size:.78rem;color:rgba(255,255,255,.5);margin-bottom:1.2rem;line-height:1.55}
+.cta-btn{display:inline-block;background:var(--gold);color:#000;font-family:'Geist',sans-serif;font-size:.78rem;font-weight:700;padding:.72rem 2rem;border-radius:8px;text-decoration:none;letter-spacing:.04em}
+
+/* Footer */
+.doc-footer{text-align:center;font-size:.62rem;color:#aaa;padding:.5rem 2rem 2.5rem;line-height:1.7}
+
+/* ── Print ── */
+@media print{
+  body{overflow:visible;height:auto;background:#fff}
+  .hdr,.fp{display:none!important}
+  .app{display:block;height:auto}
+  .pp{overflow:visible;background:#fff}
+  .doc{padding:0;max-width:100%}
+  .cover{border-radius:0;min-height:100vh;page-break-after:always;margin-bottom:0}
+  .sec,.cta-blk,.case-g,.roi-g{page-break-inside:avoid}
+  .sec{border-radius:0;border-left:none;border-right:none;margin-bottom:.5rem}
+}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-logo">CJ Elite Web</div>
+  <div class="hdr-title">Générateur de proposition commerciale</div>
+  <button class="btn-pdf" onclick="window.print()">
+    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path d="M12 16V4M8 12l4 4 4-4"/><path d="M4 20h16"/></svg>
+    Télécharger PDF
+  </button>
+</div>
+
+<div class="app">
+
+  <!-- ══ FORM PANEL ══ -->
+  <div class="fp">
+
+    <div class="fs">
+      <div class="fs-title">Prospect</div>
+      <div class="frow">
+        <div class="fg"><label>Prénom</label><input id="f-prenom" type="text" placeholder="Jean" oninput="upd()"/></div>
+        <div class="fg"><label>Nom</label><input id="f-nom" type="text" placeholder="Martin" oninput="upd()"/></div>
+      </div>
+      <div class="fg"><label>Nom de l'établissement</label><input id="f-etab" type="text" placeholder="Le Bistrot du Marché" oninput="upd()"/></div>
+      <div class="frow">
+        <div class="fg">
+          <label>Secteur</label>
+          <select id="f-secteur" onchange="upd()">
+            <option value="restaurant">Restaurant</option>
+            <option value="hotel">Hôtel</option>
+            <option value="salon">Salon de coiffure</option>
+          </select>
+        </div>
+        <div class="fg"><label>Ville</label><input id="f-ville" type="text" placeholder="Paris" oninput="upd()"/></div>
+      </div>
+    </div>
+
+    <div class="fs">
+      <div class="fs-title">Chiffres clés</div>
+      <div class="fg">
+        <label>Messages reçus / jour</label>
+        <div class="sr">
+          <input type="range" id="f-msgs" min="5" max="100" value="20" style="--fill:15.8%" oninput="sl(this,'sv-msgs','',5,100);upd()"/>
+          <div class="sv" id="sv-msgs">20</div>
+        </div>
+      </div>
+      <div class="fg">
+        <label>Ticket moyen (€)</label>
+        <div class="sr">
+          <input type="range" id="f-ticket" min="20" max="300" value="45" style="--fill:12.5%" oninput="sl(this,'sv-ticket','€',20,300);upd()"/>
+          <div class="sv" id="sv-ticket">45€</div>
+        </div>
+      </div>
+      <div class="fg">
+        <label>Taux de réponse actuel (%)</label>
+        <div class="sr">
+          <input type="range" id="f-rep" min="0" max="100" value="40" style="--fill:40%" oninput="sl(this,'sv-rep','%',0,100);upd()"/>
+          <div class="sv" id="sv-rep">40%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fs">
+      <div class="fs-title">Offre recommandée</div>
+      <div class="op-grid">
+        <div class="op on" id="op-starter" onclick="selOffre('starter')">
+          <span class="op-price">299€ + 99€/mois</span>
+          <span class="op-label">Starter</span>
+        </div>
+        <div class="op" id="op-pro" onclick="selOffre('pro')">
+          <span class="op-price">299€ + 149€/mois</span>
+          <span class="op-label">Pro</span>
+        </div>
+        <div class="op" id="op-premium" onclick="selOffre('premium')">
+          <span class="op-price">299€ + 199€/mois</span>
+          <span class="op-label">Premium</span>
+        </div>
+        <div class="op" id="op-custom" onclick="selOffre('custom')">
+          <span class="op-price">Sur devis</span>
+          <span class="op-label">Multi-site</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fs">
+      <div class="fs-title">Notes / contexte</div>
+      <div class="fg">
+        <label>Problèmes identifiés lors du premier contact</label>
+        <textarea id="f-notes" placeholder="Ex : débordé le week-end, pas de réponse la nuit, trop de no-shows, gère seul…" oninput="upd()"></textarea>
+      </div>
+    </div>
+
+  </div><!-- /fp -->
+
+  <!-- ══ PREVIEW PANEL ══ -->
+  <div class="pp">
+    <div class="doc" id="proposal-doc">
+
+      <!-- COVER -->
+      <div class="cover">
+        <div class="cover-logo">CJ ELITE WEB</div>
+        <div class="cover-mid">
+          <div class="cover-tag">Proposition Commerciale Personnalisée</div>
+          <div class="cover-h1">Votre établissement mérite un assistant<br/>qui ne <span>dort jamais.</span></div>
+          <div class="cover-prospect" id="p-prospect">Préparé pour — Votre Établissement</div>
+        </div>
+        <div class="cover-bot">
+          <div>
+            <div style="color:rgba(255,255,255,.55);margin-bottom:.18rem">Préparé par</div>
+            <div style="color:#fff;font-weight:600;font-size:.75rem">Corentin & Jauffrey · CJ Elite Web</div>
+            <div>cjeliteweb.com · 06 30 75 04 85</div>
+          </div>
+          <div class="cover-bot-r">
+            <div id="p-date" style="color:rgba(255,255,255,.6)"></div>
+            <div id="p-ville"></div>
+            <div style="margin-top:.3rem">Document confidentiel</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 01 DIAGNOSTIC -->
+      <div class="sec">
+        <div class="sec-lbl">01 — Diagnostic</div>
+        <div class="sec-h">Ce que vous perdez chaque mois sans le savoir</div>
+        <p class="ptxt" id="p-diag-intro">Chaque message sans réponse est un client potentiel qui part chez la concurrence.</p>
+        <div class="dg">
+          <div class="db"><span class="db-val" id="p-caperdu">— €</span><span class="db-lbl">CA perdu / mois</span></div>
+          <div class="db"><span class="db-val" id="p-clients">— clients</span><span class="db-lbl">Clients perdus / mois</span></div>
+          <div class="db"><span class="db-val" id="p-temps">—h</span><span class="db-lbl">Heures perdues / mois</span></div>
+        </div>
+        <div class="src">Sources : Harvard Business Review — 67% des demandes sans réponse partent chez la concurrence · OpenTable Research · McKinsey & Company</div>
+      </div>
+
+      <!-- 02 SOLUTION -->
+      <div class="sec">
+        <div class="sec-lbl">02 — La solution</div>
+        <div class="sec-h">Un agent IA qui répond en moins de 3 secondes, 24h/24</div>
+        <p class="ptxt" id="p-sol-intro"></p>
+        <div class="sol-list" id="p-sol-list"></div>
+      </div>
+
+      <!-- 03 ROI -->
+      <div class="sec">
+        <div class="sec-lbl">03 — Projection ROI</div>
+        <div class="sec-h">Ce que vous récupérez dès le premier mois</div>
+        <div class="roi-g">
+          <div class="rb neg"><span class="rb-val" id="p-roi-neg">—</span><span class="rb-lbl">CA actuellement perdu / mois</span></div>
+          <div class="rb pos"><span class="rb-val" id="p-roi-pos">—</span><span class="rb-lbl">CA récupérable avec l'agent IA</span></div>
+        </div>
+        <p class="ptxt" id="p-roi-txt"></p>
+      </div>
+
+      <!-- 04 OFFRE -->
+      <div class="sec">
+        <div class="sec-lbl">04 — L'offre</div>
+        <div class="sec-h">Formule recommandée : <span style="color:var(--gold2)" id="p-offre-name">Starter</span></div>
+        <table class="otbl">
+          <thead><tr><th>Ce qui est inclus</th><th>Détail</th></tr></thead>
+          <tbody id="p-offre-rows"></tbody>
+        </table>
+        <p class="ptxt" style="font-size:.74rem;color:#999;margin-top:.25rem" id="p-offre-note"></p>
+      </div>
+
+      <!-- 05 MISE EN PLACE -->
+      <div class="sec">
+        <div class="sec-lbl">05 — Mise en place</div>
+        <div class="sec-h">Opérationnel en 7 jours</div>
+        <div class="tl">
+          <div class="tl-step">
+            <div class="tl-dot">1</div>
+            <div class="tl-day">J+1</div>
+            <div class="tl-lbl">Appel<br/>cadrage</div>
+          </div>
+          <div class="tl-step">
+            <div class="tl-dot">2</div>
+            <div class="tl-day">J+2</div>
+            <div class="tl-lbl">Config<br/>& tests internes</div>
+          </div>
+          <div class="tl-step">
+            <div class="tl-dot">3</div>
+            <div class="tl-day">J+4</div>
+            <div class="tl-lbl">Intégration<br/>sur votre site</div>
+          </div>
+          <div class="tl-step">
+            <div class="tl-dot">4</div>
+            <div class="tl-day">J+7</div>
+            <div class="tl-lbl">Lancement<br/>& formation</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 CAS CLIENTS -->
+      <div class="sec">
+        <div class="sec-lbl">06 — Résultats clients</div>
+        <div class="sec-h">Mesurés sur des établissements similaires au vôtre</div>
+        <div class="case-g" id="p-cases"></div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-blk">
+        <div class="cta-h">Prochaine étape : <span>réservez votre appel offert</span></div>
+        <div class="cta-sub">20 minutes pour confirmer que l'agent IA est adapté à votre établissement.<br/>Aucun engagement. Mise en place possible dans la semaine.</div>
+        <a class="cta-btn" href="https://calendly.com/corentinchappelet-pro/20min">Réserver mon appel de 20 min →</a>
+      </div>
+
+      <div class="doc-footer" id="p-footer">
+        CJ Elite Web · corentinchappelet.pro@gmail.com · jauffreybenoit.pro@gmail.com · 06 30 75 04 85 · cjeliteweb.com<br/>
+        Document confidentiel — établi exclusivement pour <span id="p-footer-etab">votre établissement</span>
+      </div>
+
+    </div><!-- /doc -->
+  </div><!-- /pp -->
+
+</div><!-- /app -->
+
+<script>
+var _offre = 'starter';
+
+var OFFRES = {
+  starter:{name:'Starter',setup:299,mensuel:99,rows:[
+    ['Configuration complète','Personnalisation de l\'agent à votre établissement, vos services, vos horaires'],
+    ['Réponse automatique 24h/24','Réservations, questions, horaires — répondu en moins de 3 secondes'],
+    ['Intégration site web','Widget de chat sur votre site existant, sans intervention technique de votre part'],
+    ['Tableau de bord mensuel','Suivi des conversations, taux de réponse et statistiques d\'activité'],
+    ['Support email','Réponse à vos questions sous 24h ouvrées'],
+    ['Setup — une seule fois','299 € HT'],
+    ['Abonnement mensuel','99 € HT / mois — sans engagement, résiliation à tout moment']
+  ]},
+  pro:{name:'Pro',setup:299,mensuel:149,rows:[
+    ['Tout Starter inclus',''],
+    ['Multi-canal','Réponse sur Google Messages, Instagram Direct, WhatsApp Business'],
+    ['Rappels automatiques','Confirmation & rappel de réservation / RDV par SMS ou email'],
+    ['Rapports hebdomadaires','Analyse des opportunités manquées et des pics d\'activité'],
+    ['Support prioritaire','Réponse sous 4h en jours ouvrés'],
+    ['Setup — une seule fois','299 € HT'],
+    ['Abonnement mensuel','149 € HT / mois — sans engagement']
+  ]},
+  premium:{name:'Premium',setup:299,mensuel:199,rows:[
+    ['Tout Pro inclus',''],
+    ['Agent vocal','Répond aux appels manqués et qualifie la demande automatiquement'],
+    ['Intégration agenda / logiciel','Synchronisation avec votre logiciel de réservation ou PMS'],
+    ['Optimisation continue','Amélioration mensuelle de l\'agent par notre équipe sur la base des données'],
+    ['Responsable de compte dédié','Interlocuteur unique, disponible 6j/7'],
+    ['Setup — une seule fois','299 € HT'],
+    ['Abonnement mensuel','199 € HT / mois — sans engagement']
+  ]},
+  custom:{name:'Multi-site / Sur devis',setup:null,mensuel:null,rows:[
+    ['Périmètre sur mesure','Adapté à votre organisation et à votre volume de demandes'],
+    ['Déploiement multi-établissements','Un agent par site ou architecture centralisée'],
+    ['Intégrations spécifiques','ERP, PMS, logiciel de caisse, CRM — sur étude'],
+    ['SLA contractuel','Disponibilité et délais de support garantis par contrat'],
+    ['Tarification','Sur devis après audit gratuit de 20 min']
+  ]}
+};
+
+var SOLUTIONS = {
+  restaurant:{
+    intro:'Conçu pour les restaurants et brasseries, l\'agent IA CJ Elite gère toutes les demandes entrantes — réservations, menus, horaires, événements — sans jamais faire attendre le client, même à 23h un vendredi.',
+    items:['Réservation instantanée 24h/24, week-ends et jours fériés inclus','Réponse aux questions : menus, allergènes, capacité, terrasse, parking','Confirmation et rappel automatique pour réduire les no-shows','Gestion des demandes de groupe et événements privés','Redirection vers votre équipe uniquement pour les cas complexes']
+  },
+  hotel:{
+    intro:'Pour les hôtels et résidences, l\'agent IA gère les demandes de disponibilités, les questions tarifaires et les services annexes — en favorisant la réservation directe plutôt que via les OTA.',
+    items:['Disponibilités et tarifs communiqués en temps réel, 24h/24','Qualification des demandes et orientation vers la bonne offre','Gestion des demandes spéciales : early check-in, late check-out, lit bébé…','Pré-check-in automatisé et envoi de confirmations par email ou SMS','Réduction des commissions OTA grâce à la réservation directe favorisée']
+  },
+  salon:{
+    intro:'Pour les salons et instituts, l\'agent IA prend les rendez-vous, envoie les rappels et gère toutes les demandes de renseignements — vous libérant du téléphone pendant les heures de prestation.',
+    items:['Prise de RDV en ligne et par message, 7j/7 — y compris le dimanche soir','Présentation des prestations et tarifs par type de service','Rappel automatique 48h avant le RDV pour limiter les annulations tardives','Gestion des listes d\'attente et créneaux libérés en dernière minute','Réponse aux questions : disponibilités, durée des prestations, produits utilisés']
+  }
+};
+
+var CASES = {
+  restaurant:[
+    {s:'Restaurant · Paris 11e',r:'+34 réservations / semaine',d:'L\'agent répond aux demandes le soir et le week-end, créneaux où le personnel ne décroche plus. Zéro réservation perdue après 21h.'},
+    {s:'Brasserie · Lyon',r:'−62% de no-shows',d:'Relances automatiques 48h et 2h avant la réservation avec demande de confirmation. Les annulations arrivent à temps.'}
+  ],
+  hotel:[
+    {s:'Hôtel boutique · Bordeaux',r:'+28% de réservations directes',d:'L\'agent qualifie les demandes et oriente vers le bon tarif en direct, réduisant la dépendance aux OTA et leurs commissions.'},
+    {s:'Résidence hôtelière · Nice',r:'−50% d\'emails sans réponse',d:'Toutes les demandes de disponibilités sont traitées instantanément, même la nuit. Zéro demande sans réponse depuis le lancement.'}
+  ],
+  salon:[
+    {s:'Salon coiffure · Marseille',r:'−11h de gestion / semaine',d:'Prise de RDV, rappels et confirmations entièrement automatisés. Le téléphone ne sonne plus pendant les prestations.'},
+    {s:'Institut beauté · Toulouse',r:'+22 RDV supplémentaires / mois',d:'L\'agent capte les demandes hors horaires — notamment le dimanche soir et le lundi matin — qui étaient perdues avant.'}
+  ]
+};
+
+function sl(el,vid,sfx,mn,mx){
+  el.style.setProperty('--fill',((el.value-mn)/(mx-mn)*100).toFixed(1)+'%');
+  document.getElementById(vid).textContent=el.value+sfx;
+}
+
+function selOffre(k){
+  _offre=k;
+  document.querySelectorAll('.op').forEach(function(e){e.classList.remove('on')});
+  document.getElementById('op-'+k).classList.add('on');
+  upd();
+}
+
+function fmt(n){return n.toLocaleString('fr-FR')}
+
+function roi(){
+  var s=document.getElementById('f-secteur').value;
+  var msgs=+document.getElementById('f-msgs').value;
+  var tkt=+document.getElementById('f-ticket').value;
+  var rep=+document.getElementById('f-rep').value/100;
+  var isr=s!=='salon';
+  var pi=isr?.70:.82, pp=0.67, mpm=isr?5:4, pr=0.88;
+  var cl=Math.round(msgs*pi*(1-rep)*pp*30);
+  var ca=Math.round(cl*tkt);
+  var th=Math.round(msgs*30*mpm/60);
+  var gain=Math.round(ca*pr);
+  var men=OFFRES[_offre].mensuel||199;
+  var jr=Math.round(men/(gain/30));
+  return{cl,ca,th,gain,men,jr,s};
+}
+
+function upd(){
+  var prenom=document.getElementById('f-prenom').value.trim()||'';
+  var nom=document.getElementById('f-nom').value.trim()||'';
+  var etab=document.getElementById('f-etab').value.trim()||'Votre Établissement';
+  var ville=document.getElementById('f-ville').value.trim()||'';
+  var notes=document.getElementById('f-notes').value.trim()||'';
+  var s=document.getElementById('f-secteur').value;
+  var fullName=[prenom,nom].filter(Boolean).join(' ');
+
+  // Cover
+  var prospectLine=etab+(ville?' · '+ville:'');
+  document.getElementById('p-prospect').textContent='Préparé pour — '+prospectLine+(fullName?' ('+fullName+')':'');
+  document.getElementById('p-date').textContent=new Date().toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('p-ville').textContent=ville;
+  document.getElementById('p-footer-etab').textContent=etab;
+
+  // ROI
+  var d=roi();
+  document.getElementById('p-caperdu').textContent=fmt(d.ca)+' €';
+  document.getElementById('p-clients').textContent=d.cl+' clients';
+  document.getElementById('p-temps').textContent=d.th+'h';
+  document.getElementById('p-roi-neg').textContent='−'+fmt(d.ca)+' €';
+  document.getElementById('p-roi-pos').textContent='+'+fmt(d.gain)+' €';
+
+  // Diag intro
+  var di='Pour '+etab+', avec '+document.getElementById('f-msgs').value+' messages/jour et un taux de réponse de '+document.getElementById('f-rep').value+'%, voici l\'impact estimé selon les données sectorielles publiées.';
+  if(notes)di+=' Contexte noté : '+notes.charAt(0).toLowerCase()+notes.slice(1)+(notes.endsWith('.')?'':'.');
+  document.getElementById('p-diag-intro').textContent=di;
+
+  // ROI txt
+  document.getElementById('p-roi-txt').textContent=
+    'Avec un abonnement de '+d.men+' €/mois, le retour sur investissement est atteint en '+d.jr+' jours. Sur 12 mois, le gain net estimé est de +'
+    +fmt(Math.max(0,d.gain*12-d.men*12))+' €. Ces chiffres sont basés sur des données sectorielles publiées et affinés lors de l\'appel de cadrage.';
+
+  // Solution
+  var sol=SOLUTIONS[s]||SOLUTIONS.restaurant;
+  document.getElementById('p-sol-intro').textContent=sol.intro;
+  var sl=document.getElementById('p-sol-list');sl.innerHTML='';
+  sol.items.forEach(function(it){
+    sl.innerHTML+='<div class="sol-item"><div class="sol-ico">✓</div><div>'+it+'</div></div>';
+  });
+
+  // Offre
+  var off=OFFRES[_offre];
+  document.getElementById('p-offre-name').textContent=off.name;
+  var tb=document.getElementById('p-offre-rows');tb.innerHTML='';
+  off.rows.forEach(function(r,i){
+    var isPrice=i>=off.rows.length-2;
+    tb.innerHTML+='<tr'+(isPrice?' class="hl"':'')+'><td>'+r[0]+(i===0&&_offre!=='custom'?'<span class="obadge">Recommandé</span>':'')+'</td><td>'+r[1]+'</td></tr>';
+  });
+  document.getElementById('p-offre-note').textContent=off.mensuel
+    ?'Aucun engagement. Résiliation à tout moment. Le setup de '+off.setup+' € HT est facturé à la signature. L\'abonnement de '+off.mensuel+' € HT démarre à la mise en ligne de l\'agent.'
+    :'Tarification sur devis après un audit gratuit de 20 minutes. Aucun engagement avant validation du devis.';
+
+  // Cases
+  var cs=CASES[s]||CASES.restaurant;
+  var cel=document.getElementById('p-cases');cel.innerHTML='';
+  cs.forEach(function(c){
+    cel.innerHTML+='<div class="cc"><div class="cc-sector">'+c.s+'</div><div class="cc-result">'+c.r+'</div><div class="cc-desc">'+c.d+'</div></div>';
+  });
+}
+
+upd();
+</script>
+</body>
+</html>
